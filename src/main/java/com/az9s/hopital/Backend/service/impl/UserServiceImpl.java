@@ -31,4 +31,10 @@ public class UserServiceImpl implements UserService {
     public User findByPhone(String phone) {
         return userRepository.findByPhone(phone).orElse(null);
     }
+
+    @Override
+    public Boolean existsByPhone(String phone) {
+        User user = this.findByPhone(phone);
+        return user != null;
+    }
 }

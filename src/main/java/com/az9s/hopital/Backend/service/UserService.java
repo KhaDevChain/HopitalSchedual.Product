@@ -7,4 +7,5 @@ public interface UserService {
     User findById(String id);
     User findByEmail(String email);
     User findByPhone(String phone);
+    Boolean existsByPhone(String phone);
 }

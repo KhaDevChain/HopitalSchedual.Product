@@ -22,10 +22,10 @@ import lombok.NoArgsConstructor;
     name = "patients",
     indexes = {
         @Index(name = "idx_pati_user" , columnList = "user_id"),
-        @Index(name = "idx_pati_user_udetal" , columnList = "user_id, user_detail_id"),
+        @Index(name = "idx_pati_user_udetal" , columnList = "user_id, user_record_id"),
     },
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"user_id", "user_detail_id"})
+        @UniqueConstraint(columnNames = {"user_id", "user_record_id"})
     }
 )
 public class Patient {
@@ -49,6 +49,6 @@ public class Patient {
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "user_detail_id", nullable = false)
-    private UserDetail userDetail;
+    @JoinColumn(name = "user_record_id", nullable = false)
+    private UserRecord userRecord;
 }

@@ -3,6 +3,7 @@ package com.az9s.hopital.Backend.entity;
 import java.time.LocalDate;
 
 import com.az9s.hopital.Backend.utils.option.GenderEnum;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -11,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "user_details")
-public class UserDetail {
+@Table(name = "user_records")
+public class UserRecord {
 
     @Id
     @Column(columnDefinition = "varchar(40)", nullable = false)
@@ -22,6 +23,7 @@ public class UserDetail {
     private String fullName;
 
     @Column(name = "date_of_birth")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
@@ -34,7 +36,7 @@ public class UserDetail {
     @Column(name = "avatar", columnDefinition = "varchar(120)")
     private String avatar;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }

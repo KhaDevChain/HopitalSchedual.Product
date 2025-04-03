@@ -57,7 +57,7 @@ public class User implements Serializable {
     private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private UserDetail userDetail;
+    private UserRecord userRecord;
 
     public RoleDTO getRoleDTO() {
         return role == null ? null : new RoleDTO(

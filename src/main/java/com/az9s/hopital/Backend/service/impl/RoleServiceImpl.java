@@ -1,5 +1,7 @@
 package com.az9s.hopital.Backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findById(Long id) {
         return roleRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return roleRepository.findAll();
     }
 }
