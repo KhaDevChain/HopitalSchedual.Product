@@ -1,7 +1,6 @@
 package com.az9s.hopital.Backend.utils.dto;
 
-import java.time.LocalDateTime;
-
+import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -13,8 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
-    private Long uniqueId = null;
-    private String roleName = null;
-    private LocalDateTime createdAt = null;
-    private PermissionDTO permissionDTO = null;
+    private String uniqueId = null;
+    private String phone = null;
+    private String password = null;
+    private String email = null;
+    private ActivateEnum activated = null;
+    private Long roleId = null;
+    private String userDetailId = null;
 }

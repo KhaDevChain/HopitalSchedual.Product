@@ -30,7 +30,7 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(40)", nullable = false)
     private String uniqueId;
 
-    @Column(columnDefinition = "varchar(13)", nullable = false)
+    @Column(columnDefinition = "varchar(13)", nullable = false, unique = true)
     private String phone;
 
     @Column(columnDefinition = "varchar(256)", nullable = false)
@@ -63,7 +63,7 @@ public class User implements Serializable {
         return role == null ? null : new RoleDTO(
             this.role.getUniqueId(),
             this.role.getRoleName(),
-            this.role.getPermissionsDTO()
+            this.role.getPermissions()
         );
     }
 }

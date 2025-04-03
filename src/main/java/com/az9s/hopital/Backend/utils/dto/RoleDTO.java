@@ -2,6 +2,7 @@ package com.az9s.hopital.Backend.utils.dto;
 
 import java.util.List;
 
+import com.az9s.hopital.Backend.entity.Permission;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -15,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class RoleDTO {
     private Long uniqueId = null;
     private String roleName = null;
-    private List<PermissionDTO> permissionDTO = null;
+    private List<Permission> permission = null;
 }
