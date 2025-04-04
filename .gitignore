@@ -19,6 +19,16 @@ target/
 *.iml
 *.ipr
 
+### Dependencies ###
+!**/src/main/**/node_modules
+
+# Next.JS
+/.next/
+/out/
+
+# Frontend
+/build
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
