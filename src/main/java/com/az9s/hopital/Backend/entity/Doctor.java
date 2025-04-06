@@ -1,10 +1,13 @@
 package com.az9s.hopital.Backend.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
     name = "doctors",
     indexes = {
         @Index(name = "idx_doctor_user" , columnList = "user_id"),
+        @Index(name = "idx_doctor_spec" , columnList = "specialty_id"),
         @Index(name = "idx_doctor_user_udetal" , columnList = "user_id, user_record_id"),
     },
     uniqueConstraints = {
@@ -48,4 +52,14 @@ public class Doctor {
     @OneToOne
     @JoinColumn(name = "user_record_id", nullable = false)
     private UserRecord userRecord;
+
+    /**
+     * DỮ LIỆU LIÊN KẾT
+     */
+    @ManyToOne(
+        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+        fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "specialty_id", nullable = false)
+    private Specialty specialty;
 }

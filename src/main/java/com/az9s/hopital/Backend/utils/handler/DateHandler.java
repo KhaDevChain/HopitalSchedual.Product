@@ -28,4 +28,17 @@ public class DateHandler {
             return null;
         }
     }
+
+    public boolean isBetween(LocalDateTime target, LocalDateTime start, LocalDateTime end) {
+        return (target.isEqual(start) || target.isAfter(start)) 
+                && (target.isEqual(end) || target.isBefore(end));
+    }
+
+    public boolean isAfter(LocalDateTime target, LocalDateTime dateTime) {
+        return target.isAfter(dateTime);
+    }
+    
+    public boolean isBefore(LocalDateTime target, LocalDateTime dateTime) {
+        return target.isBefore(dateTime);    
+    }
 }
