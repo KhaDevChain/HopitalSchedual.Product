@@ -20,16 +20,18 @@ const OAuthSignIn = () => {
   }
 
   return (
-    <Button
-      onClick={loginWithGoogle}
-      aria-label='Sign in with google'
-      variant='outline'
-      className='w-full bg-background sm:w-auto'
-      isLoading={isLoading}
-    >
-      <Icons.google className='mr-2 h-4 w-4' aria-hidden='true' />
-      Google
-    </Button>
+    <>
+      <Button
+        onClick={loginWithGoogle}
+        aria-label='Sign in with google'
+        variant='outline'
+        className='w-full bg-background sm:w-auto'
+        isLoading={isLoading}
+      >
+        <Icons.google className='mr-2 h-4 w-4' aria-hidden='true' />
+        Google
+      </Button>
+    </>
   )
 }
 

@@ -14,9 +14,9 @@ export default async function SignInPage() {
     <div className='mx-auto'>
       <Card className='w- xl:w-[500px]'>
         <CardHeader className='space-y-1'>
-          <CardTitle className='text-2xl'>Sign in</CardTitle>
+          <CardTitle className='text-2xl'>Đăng nhập</CardTitle>
           <CardDescription>
-            Choose your preferred sign in method
+            Chọn phương thức đăng nhập của bạn
           </CardDescription>
         </CardHeader>
         <CardContent className='grid grid-cols-1'>

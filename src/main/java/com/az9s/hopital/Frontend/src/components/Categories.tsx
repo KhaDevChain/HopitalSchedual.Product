@@ -1,7 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { Suspense } from 'react'
 
-import CategoryCard from '@/components/cards/CategoryCard'
 import CategoryCardSkeleton from '@/components/skeletons/CategoryCardSkeleton'
 import { categories } from '@/config'
 
@@ -31,7 +30,7 @@ const Categories = async () => {
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {categories.map((category) => (
           <Suspense key={category.slug} fallback={<CategoryCardSkeleton />}>
-            <CategoryCard category={category} />
+            
           </Suspense>
         ))}
       </div>

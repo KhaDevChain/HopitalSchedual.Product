@@ -34,7 +34,7 @@ const MobileNav = () => {
               onClick={() => setIsOpen(false)}
             >
               <Icons.logo className='mr-2 h-4 w-4' aria-hidden='true' />
-              <span className='font-bold'>Skaters</span>
+              <span className='font-bold'>Hopital</span>
               <span className='sr-only'>Home</span>
             </Link>
             <div className='text-sm'>

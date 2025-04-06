@@ -8,7 +8,7 @@ import ClientProvider from '@/providers/ClientProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Skaters',
+  title: 'Hopital',
   description: 'An open source e-commerce project built by inifarhan',
   category: 'ecommerce',
   authors: { name: 'inifarhan' },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   creator: 'Muhammad Farhan Gunawan',
   publisher: 'Muhammad Farhan Gunawan',
   openGraph: {
-    title: 'Skaters',
+    title: 'Hopital',
     description: 'An open source e-commerce project built by inifarhan',
     url: 'https://skaters-inifarhan.vercel.app/',
     siteName: 'Skaters',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Skaters',
+    title: 'Hopital',
     description: 'An open source e-commerce project built by inifarhan',
     images: ['https://skaters-inifarhan.vercel.app/images/screenshoot.PNG'],
   },

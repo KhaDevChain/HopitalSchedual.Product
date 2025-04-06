@@ -7,7 +7,6 @@ import axios from 'axios'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 
-import ProductCard from '@/components/cards/ProductCard'
 import ProductCardSkeleton from '@/components/skeletons/ProductCardSkeleton'
 import { INFINITE_SCROLL_LIMIT } from '@/config'
 
@@ -65,11 +64,11 @@ const ProductsList: React.FC<ProductsListProps> = ({
         if (index === products.length - 1 && products.length < totalData) {
           return (
             <div key={product.id} ref={ref}>
-              <ProductCard product={product} />
+              
             </div>
           )
         } else {
-          return <ProductCard key={product.id} product={product} />
+          return <></>
         }
       })}
       {isFetchingNextPage &&
