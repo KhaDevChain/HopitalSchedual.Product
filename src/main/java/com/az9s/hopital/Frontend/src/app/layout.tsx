@@ -3,39 +3,32 @@ import type { Metadata } from 'next'
 import { extractRouterConfig } from 'uploadthing/server'
 
 import { ourFileRouter } from '@/app/api/uploadthing/core'
-import ClientProvider from '@/providers/ClientProvider'
 
-import './globals.css'
+import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Hopital',
-  description: 'An open source e-commerce project built by inifarhan',
-  category: 'ecommerce',
-  authors: { name: 'inifarhan' },
+  title: 'Hopital - Your Health Matters',
+  description: 'Hopital - Your Health Matters',
+  category: 'hopital',
   keywords: [
-    'Next.js',
-    'React',
-    'JavaScript',
-    'Skateboard',
-    'Shoes',
-    'Accessories',
-    'Clothing',
+    'Hopital',
+    'doctor',
+    'patient',
+    'bệnh viện',
+    'khám chữa bệnh',
+    'đặt lịch khám bệnh',
+    'tư vấn khám bệnh',
   ],
-  creator: 'Muhammad Farhan Gunawan',
-  publisher: 'Muhammad Farhan Gunawan',
   openGraph: {
-    title: 'Hopital',
-    description: 'An open source e-commerce project built by inifarhan',
-    url: 'https://skaters-inifarhan.vercel.app/',
-    siteName: 'Skaters',
-    images: 'https://skaters-inifarhan.vercel.app/images/screenshoot.PNG',
+    title: 'Hopital - Your Health Matters',
+    description: 'Hopital - Your Health Matters',
+    siteName: 'heathcare',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hopital',
-    description: 'An open source e-commerce project built by inifarhan',
-    images: ['https://skaters-inifarhan.vercel.app/images/screenshoot.PNG'],
+    title: 'Hopital - Your Health Matters',
+    description: 'Hopital - Your Health Matters',
   },
 }
 
@@ -46,19 +39,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <link rel="shortcut icon" href="/images/logo/logo-min.png" type="image/x-icon" />
       <body>
-        <ClientProvider>
-          <NextSSRPlugin
-            /**
-             * The `extractRouterConfig` will extract **only** the route configs
-             * from the router to prevent additional information from being
-             * leaked to the client. The data passed to the client is the same
-             * as if you were to fetch `/api/uploadthing` directly.
-             */
-            routerConfig={extractRouterConfig(ourFileRouter)}
-          />
-          {children}
-        </ClientProvider>
+        <NextSSRPlugin
+          /**
+           * The `extractRouterConfig` will extract **only** the route configs
+           * from the router to prevent additional information from being
+           * leaked to the client. The data passed to the client is the same
+           * as if you were to fetch `/api/uploadthing` directly.
+           */
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
+        {children}
       </body>
     </html>
   )

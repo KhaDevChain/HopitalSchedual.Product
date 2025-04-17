@@ -33,9 +33,10 @@ const MobileNav = () => {
               className='flex items-center'
               onClick={() => setIsOpen(false)}
             >
-              <Icons.logo className='mr-2 h-4 w-4' aria-hidden='true' />
-              <span className='font-bold'>Hopital</span>
-              <span className='sr-only'>Home</span>
+              <span className='flex items-center text-lg font-bold tracking-tight'>
+                <Icons.logo className='h-6 w-6' aria-hidden='true' />
+                <strong className='ml-2 text-2xl'>Healthy<span className='text-[#3D8D7A]'>7S</span></strong>
+              </span>
             </Link>
             <div className='text-sm'>
               <Accordion

@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 2 * 24 * 60 * 60
+    maxAge: 10 * 60 * 60,
   },
   pages: {
     signIn: '/sign-in',
@@ -32,9 +32,8 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ token, session }) {
       if (session.user) {
-        session.user.id = token.id
-        session.user.name = token.name
         session.user.email = token.email
+        session.user.name = token.name
         session.user.image = token.picture
       }
 

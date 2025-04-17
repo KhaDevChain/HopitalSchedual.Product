@@ -8,14 +8,23 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { Button } from '@/components/ui/Button'
-import useCart from '@/hooks/useCart'
 import { formatPrice } from '@/lib/utils'
 
 const Summary = () => {
   const [token, setToken] = useState<string>('')
   const session = useSession()
   const router = useRouter()
-  const cart = useCart()
+  const cart = {
+    items: [
+      { id: 1, name: 'Product 1', price: '10.00' },
+      { id: 2, name: 'Product 2', price: '20.00' },
+      { id: 3, name: 'Product 3', price: '30.00' },
+      { id: 4, name: 'Product 4', price: '40.00' },
+      { id: 5, name: 'Product 5', price: '50.00' },
+      { id: 6, name: 'Product 6', price: '60.00' },
+    ],
+    removeAll: () => {},
+  }
 
   const totalPrice = cart.items.reduce((total, item) => {
     return total + Number(item.price)

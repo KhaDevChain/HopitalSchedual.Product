@@ -11,7 +11,7 @@ export default async function LobbyLayout({
 
   return (
     <div>
-      <Navbar user={session?.user} />
+      <Navbar />
       <div>{children}</div>
       <Footer />
     </div>

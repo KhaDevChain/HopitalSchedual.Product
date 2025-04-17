@@ -5,13 +5,11 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/Button"
-import useCart from "@/hooks/useCart"
 
 const CartButton = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false)
 
   const router = useRouter()
-  const cart = useCart()
 
   useEffect(() => {
     setIsMounted(true)
@@ -27,10 +25,10 @@ const CartButton = () => {
       size='sm'
       className='gap-x-1'
       variant='outline'
-      aria-label={`${cart.items.length}-items-in-cart`}
+      aria-label={`${5}-items-in-cart`}
     >
       <ShoppingCart className='w-4 h-4' />
-      {cart.items.length}
+      {5}
     </Button>
   )
 }

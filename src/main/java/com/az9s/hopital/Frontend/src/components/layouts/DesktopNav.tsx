@@ -14,14 +14,15 @@ const DesktopNav = () => {
   return (
     <div className='hidden lg:flex gap-x-8 items-center'>
       <Link href='/' className='flex space-x-2'>
-        <Icons.logo className='h-6 w-6' aria-hidden='true' />
-        <span className='hidden font-bold lg:inline-block'>Hopital</span>
-        <span className='sr-only'>Home</span>
+        <span className='flex items-center text-lg font-bold tracking-tight'>
+          <Icons.logo className='h-6 w-6' aria-hidden='true' />
+          <strong className='ml-2 text-2xl'>Healthy<span className='text-[#3D8D7A]'>7S</span></strong>
+        </span>
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Lobby</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Summary</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className='grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'>
                 <li className='row-span-3'>
@@ -46,7 +47,7 @@ const DesktopNav = () => {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
+            <NavigationMenuTrigger>Service</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className='grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2'>
                 <ListItem href='/products?category=skateboards' title='Skateboards'>

@@ -3,7 +3,6 @@ import { Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState, useTransition } from 'react'
 
-import searchProducts from '@/actions/search-products'
 import { Button } from '@/components/ui/Button'
 import {
   CommandDialog,
@@ -15,13 +14,11 @@ import {
 } from '@/components/ui/Command'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { cn } from '@/lib/utils'
-import { SearchProducts } from '@/types/search-products'
 
 const SearchButton = () => {
   const [open, setOpen] = useState<boolean>(false)
   const [query, setQuery] = useState<string>('')
   const [debounced] = useDebouncedValue(query, 300)
-  const [data, setData] = useState<SearchProducts[] | null>(null)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
@@ -35,22 +32,6 @@ const SearchButton = () => {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
-
-  useEffect(() => {
-    if (debounced.length <= 0) {
-      setData(null)
-      return
-    }
-
-    const fetchProducts = async () => {
-      const response = await searchProducts(debounced)
-      setData(response)
-    }
-
-    startTransition(fetchProducts)
-
-    return () => setData(null)
-  }, [debounced])
 
   useEffect(() => {
     if (!open) {
@@ -99,31 +80,30 @@ const SearchButton = () => {
               <Skeleton className='h-8 rounded-sm' />
             </div>
           ) : (
-            data?.map((group) => (
+            // data?.map((group) => (
               <CommandGroup
-                key={group.category}
+                key={2}
                 className='capitalize'
-                heading={group.category}
+                heading={"header"}
               >
-                {group.products.map((item, index) => {
-                  return (
-                    <CommandItem
-                      key={index}
-                      value={item.name}
-                      onSelect={() =>
-                        handleSelect(() =>
-                          router.push(
-                            `/${item.storeId}/${item.slug}?productId=${item.id}`,
-                          ),
-                        )
-                      }
-                    >
-                      <span className='truncate'>{item.name}</span>
-                    </CommandItem>
-                  )
-                })}
+                <CommandItem
+                  key={1}
+                  value="Document"
+                  onSelect={() =>
+                    handleSelect(() =>
+                      router.push(
+                        `/${1}/${1}?productId=${1}`,
+                      ),
+                    )
+                  }
+                >
+                  <span className='truncate'>Precription</span>
+                </CommandItem>
+                {/* {group.products.map((item, index) => {
+                  
+                })} */}
               </CommandGroup>
-            ))
+            // ))
           )}
         </CommandList>
       </CommandDialog>
