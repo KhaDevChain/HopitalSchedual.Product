@@ -7,6 +7,7 @@ public class Parameters {
     public static final String DOMAIN_HOST = "localhost";
     public static final String DOMAIN_API = "http://localhost:3537";
     public static final String DOMAIN_WEB = "http://localhost:3536";
+    public static final String DOMAIN_CMS = "http://localhost:3336";
 
     // Cookies
     public static final Boolean IS_SECURE = false;
