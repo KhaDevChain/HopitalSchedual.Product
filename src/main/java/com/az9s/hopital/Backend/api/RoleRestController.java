@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.az9s.hopital.Backend.service.RoleService;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/api/role")
 public class RoleRestController {
     @Autowired
     private RoleService roleService;

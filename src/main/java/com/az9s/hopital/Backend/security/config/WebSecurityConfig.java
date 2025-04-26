@@ -58,7 +58,7 @@ public class WebSecurityConfig {
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .formLogin(formLogin -> formLogin.disable())
                 .logout(logout -> logout
-                    .logoutUrl("/auth/logout")
+                    .logoutUrl("/api/auth/auth/logout")
                     .deleteCookies("AUTH_TOKEN")
                     .invalidateHttpSession(true)
                     .clearAuthentication(true)
@@ -69,9 +69,9 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                            "/auth/signup", 
-                            "/auth/login",
-                            "/auth/logout"
+                            "/api/auth/signup", 
+                            "/api/auth/login",
+                            "/api/auth/logout"
                         ).permitAll()
 
                         .requestMatchers(

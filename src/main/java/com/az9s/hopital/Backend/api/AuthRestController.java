@@ -28,7 +28,7 @@ import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 import com.az9s.hopital.Backend.utils.option.GenderEnum;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthRestController {
 
     @Autowired
