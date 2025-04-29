@@ -36,8 +36,8 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = tokenOpt.get();
             
             if (JwtUtil.validateToken(token)) {
-                String phone = JwtUtil.getPhoneFromToken(token);
-                UserDetailsImpl userDetails = userDetailServiceImpl.loadUserByPhone(phone);
+                String data = JwtUtil.getDataFromToken(token);
+                UserDetailsImpl userDetails = userDetailServiceImpl.loadUserByEmailOrPhone(data);
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -52,8 +52,15 @@ public class JwtFilter extends OncePerRequestFilter {
     private Optional<String> getTokenFromCookies(HttpServletRequest request) {
         if (request.getCookies() == null) return Optional.empty();
 
+        String cookieName;
+        if (request.getRequestURI().contains("/cms")) {
+            cookieName = "AUTH_WEB_TOKEN";
+        } else {
+            cookieName = "AUTH_CMS_TOKEN";
+        }
+
         return Arrays.stream(request.getCookies())
-                .filter(cookie -> "AUTH_TOKEN".equals(cookie.getName()))
+                .filter(cookie -> cookieName.equals(cookie.getName()))
                 .map(Cookie::getValue)
                 .findFirst();
     }

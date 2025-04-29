@@ -10,14 +10,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.reactive.CorsConfigurationSource;
-import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.az9s.hopital.Backend.security.filter.JwtFilter;
 import com.az9s.hopital.Backend.utils.global.Parameters;
-
-import jakarta.servlet.http.HttpServletResponse;
-
 
 @Configuration
 public class WebSecurityConfig {
@@ -53,25 +50,19 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.disable())
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .formLogin(formLogin -> formLogin.disable())
-                .logout(logout -> logout
-                    .logoutUrl("/api/auth/auth/logout")
-                    .deleteCookies("AUTH_TOKEN")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutSuccessHandler((request, response, authentication) -> {
-                        response.setStatus(HttpServletResponse.SC_OK);
-                    })
-                )
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                            "/api/auth/signup", 
-                            "/api/auth/login",
-                            "/api/auth/logout"
+                            "/api/auth/web/signup",
+                                        "/api/auth/web/login",
+                                        "/api/auth/web/logout",
+                                        "/api/auth/cms/signup",
+                                        "/api/auth/cms/login",
+                                        "/api/auth/cms/logout"
                         ).permitAll()
 
                         .requestMatchers(

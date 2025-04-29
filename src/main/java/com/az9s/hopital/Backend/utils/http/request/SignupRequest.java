@@ -17,5 +17,6 @@ public class SignupRequest {
     private LocalDate dateOfBirth;
     private String address;
     private String avatar;
+    private Boolean gender;
     private Long roleId;
 }

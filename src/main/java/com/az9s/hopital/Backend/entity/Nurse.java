@@ -1,9 +1,9 @@
 package com.az9s.hopital.Backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
@@ -20,19 +20,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(
-    name = "doctors",
+    name = "nurses",
     indexes = {
-        @Index(name = "idx_doctor_user" , columnList = "user_id"),
-        @Index(name = "idx_doctor_spec" , columnList = "specialty_id"),
-        @Index(name = "idx_doctor_hopital" , columnList = "hopital_id"),
-        @Index(name = "idx_doctor_user_udetal" , columnList = "user_id, user_record_id"),
+        @Index(name = "idx_nurse_user" , columnList = "user_id"),
+        @Index(name = "idx_nurse_spec" , columnList = "specialty_id"),
+        @Index(name = "idx_nurse_hopital" , columnList = "hopital_id"),
+        @Index(name = "idx_nurse_user_udetal" , columnList = "user_id, user_record_id"),
     },
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "user_record_id"})
     }
 )
-public class Doctor {
-
+public class Nurse {
     @Id
     @Column(columnDefinition = "varchar(40)", nullable = false)
     private String uniqueId;
@@ -40,8 +39,8 @@ public class Doctor {
     @Column(name = "specialization", nullable = false, columnDefinition = "varchar(255)")
     private String specialization;
 
-    @Column(name = "experience_years")
-    private int experienceYears;
+    @Column(name = "nurse_code", unique = true, nullable = false)
+    private String nurseCode;
 
     @Column(name = "license_number", unique = true, columnDefinition = "varchar(50)")
     private String licenseNumber;

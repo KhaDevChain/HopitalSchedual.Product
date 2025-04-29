@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
     name = "users",
     indexes = {
         @Index(name = "idx_user_email", columnList = "email"),
-        @Index(name = "idx_user_phone", columnList = "phone")
+        @Index(name = "idx_user_phone", columnList = "phone"),
+        @Index(name = "idx_user_activated", columnList = "activated")
     },
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {"phone", "role_id"}),

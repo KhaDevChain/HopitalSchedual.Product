@@ -12,10 +12,10 @@ public class JwtUtil {
 
     private static Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
 
-    public static String generateToken(String phone) {
+    public static String generateTokenHaveTime(String data) {
         try {
             return Jwts.builder()
-            .setSubject(phone)
+            .setSubject(data)
             .setIssuedAt(new Date())
             .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
             .signWith(key, SignatureAlgorithm.HS256)
@@ -23,10 +23,22 @@ public class JwtUtil {
         } catch (Exception e) {
             return null;
         }
-
     }
 
-    public static String getPhoneFromToken(String token) {
+    public static String generateTokenPushTime(String data, Long expirationTime) {
+        try {
+            return Jwts.builder()
+            .setSubject(data)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+            .signWith(key, SignatureAlgorithm.HS256)
+            .compact();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String getDataFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()

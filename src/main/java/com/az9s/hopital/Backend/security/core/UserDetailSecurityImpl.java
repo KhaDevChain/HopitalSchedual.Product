@@ -15,13 +15,13 @@ public class UserDetailSecurityImpl implements UserDetailSecurity, UserDetailsSe
     private UserRepository userRepository;
 
     @Override
-    public UserDetailsImpl loadUserByUsername(String username) throws UsernameNotFoundException {
-        return loadUserByPhone(username);
+    public UserDetailsImpl loadUserByUsername(String emailOrPhone) throws UsernameNotFoundException {
+        return loadUserByEmailOrPhone(emailOrPhone);
     }
 
     @Override
-    public UserDetailsImpl loadUserByPhone(String phone) {
-        User user = userRepository.findByPhone(phone)
+    public UserDetailsImpl loadUserByEmailOrPhone(String emailOrPhone) {
+        User user = userRepository.findByEmailOrPhone(emailOrPhone)
                         .orElseThrow(() -> new UsernameNotFoundException("User not exist"));
 
         return new UserDetailsImpl(user);
