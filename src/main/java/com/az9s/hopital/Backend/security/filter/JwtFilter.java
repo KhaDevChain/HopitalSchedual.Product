@@ -27,6 +27,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailSecurityImpl userDetailServiceImpl;
 
+    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {

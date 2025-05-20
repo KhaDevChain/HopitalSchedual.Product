@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-healthy7s-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DOCKER_LOCAL_PASSWORD}
+      MYSQL_DATABASE: ${DOCKER_LOCAL_NAME}
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: No1vn^!^Halo@2023
+    ports:
+      - "${DOCKER_SQL_PORT}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - healthy-api-network
+
+  healthy-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: healthy-api
+    # restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+      APPLICATION_NAME: ${APPLICATION_NAME}
+
+      DB_LOCAL_URL: ${DOCKER_SQL_URL}
+      DB_LOCAL_USER: ${DOCKER_LOCAL_USER}
+      DB_LOCAL_PASSWORD: ${DOCKER_LOCAL_PASSWORD}
+
+      HIKARI_POOL_NAME: ${HIKARI_POOL_NAME}
+
+      LOG_LEVEL_API: DEBUG
+      LOG_LEVEL_JDBC: DEBUG
+
+      SECRET_KEY: ${SECRET_KEY}
+    networks:
+      - healthy-api-network
+
+volumes:
+  mysql-data:
+
+networks:
+  healthy-api-network:
