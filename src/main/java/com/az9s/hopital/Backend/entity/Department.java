@@ -1,12 +1,16 @@
 package com.az9s.hopital.Backend.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +29,16 @@ public class Department {
 
     @Column(columnDefinition = "varchar(60)", nullable = false, unique = true)
     private String departmentName;
+
+     @Column(columnDefinition = "varchar(60)", nullable = false, unique = true)
+    private String note;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "activated", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ActivateEnum activated;
 
     @OneToMany(
         mappedBy = "department",

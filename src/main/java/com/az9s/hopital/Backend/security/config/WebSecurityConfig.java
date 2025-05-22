@@ -57,18 +57,13 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                            "/api/auth/web/signup",
-                                        "/api/auth/web/login",
-                                        "/api/auth/web/logout",
-                                        "/api/auth/cms/signup",
-                                        "/api/auth/cms/login",
-                                        "/api/auth/cms/logout"
+                            "/api/auth/signup",
+                                        "/api/auth/login",
+                                        "/api/auth/logout",
+                                        "/api2/auth/signup",
+                                        "/api2/auth/login",
+                                        "/api2/auth/logout"
                         ).permitAll()
-
-                        .requestMatchers(
-                            "/role/all"
-                        ).hasAuthority("ADMIN")
-                        
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

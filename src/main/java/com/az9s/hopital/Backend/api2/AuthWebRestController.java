@@ -1,4 +1,4 @@
-package com.az9s.hopital.Backend.api;
+package com.az9s.hopital.Backend.api2;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,12 +27,14 @@ import com.az9s.hopital.Backend.service.UserService;
 import com.az9s.hopital.Backend.utils.global.Parameters;
 import com.az9s.hopital.Backend.utils.http.request.LoginRequest;
 import com.az9s.hopital.Backend.utils.http.request.SignupRequest;
+import com.az9s.hopital.Backend.utils.http.response.BasicResponse;
+import com.az9s.hopital.Backend.utils.http.response.LoginResponse;
 import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 import com.az9s.hopital.Backend.utils.option.GenderEnum;
 
 @RestController
-@RequestMapping("/api/auth")
-public class AuthRestController {
+@RequestMapping("/api2/auth")
+public class AuthWebRestController {
 
     @Autowired
     private UserService userService;
@@ -56,7 +58,7 @@ public class AuthRestController {
     private RoleService roleService;
 
     @Transactional
-    @PostMapping("/web/signup")
+    @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
         // Kiểm tra nếu số điện thoại đã tồn tại
         if (userService.existsByPhone(request.getPhone())) {
@@ -88,10 +90,10 @@ public class AuthRestController {
 
         patientService.savePatient(patient);
 
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(new BasicResponse("User registered successfully!", 200, patient));
     }
 
-    @PostMapping("/web/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getPhone(), request.getPassword())
@@ -109,72 +111,12 @@ public class AuthRestController {
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new LoginResponse(token, request.getPhone()));
     }
 
-    @PostMapping("/web/logout")
+    @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("AUTH_WEB_TOKEN", null);
-        cookie.setMaxAge(Parameters.COOKIE_OFF);
-        cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        cookie.setSecure(Parameters.IS_SECURE);
-        cookie.setPath("/");
-        cookie.setDomain(Parameters.DOMAIN_HOST);
-        cookie.setAttribute("SameSite", "Lax");
-        response.addCookie(cookie);
-
-        return ResponseEntity.ok("Logout successful");
-    }
-
-    // CMS LOGIN
-    @Transactional
-    @PostMapping("/cms/signup")
-    public ResponseEntity<?> signupCms(@RequestBody SignupRequest request) {
-        // Kiểm tra nếu số điện thoại đã tồn tại
-        if (userService.existsByPhone(request.getPhone())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number already exists");
-        }
-        User user = new User();
-        user.setUniqueId(UUID.randomUUID().toString());
-        user.setPhone(request.getPhone());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setEmail(request.getEmail());
-        user.setActivated(ActivateEnum.ACTIVE);
-        user.setRole(roleService.findById(request.getRoleId()));
-
-        userService.saveUser(user);
-        return ResponseEntity.ok("User registered successfully");
-    }
-
-
-    @PostMapping("/cms/login")
-    public ResponseEntity<?> loginCms(@RequestBody LoginRequest request, HttpServletResponse response) {
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
-        if (request.getEmail().isEmpty() || request.getEmail() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email cannot be empty");
-        }
-
-        UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getEmail());
-        String data = userDetails.getEmail();
-        String token = JwtUtil.generateTokenHaveTime(data);
-
-        Cookie cookie = new Cookie("AUTH_CMS_TOKEN", token);
-        cookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
-        cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        cookie.setSecure(Parameters.IS_SECURE);
-        cookie.setPath("/");
-        cookie.setDomain(Parameters.DOMAIN_HOST);
-        cookie.setAttribute("SameSite", "Lax");
-        response.addCookie(cookie);
-
-        return ResponseEntity.ok(token);
-    }
-
-    @PostMapping("/cms/logout")
-    public ResponseEntity<?> logoutCms(HttpServletResponse response) {
-        Cookie cookie = new Cookie("AUTH_CMS_TOKEN", null);
         cookie.setMaxAge(Parameters.COOKIE_OFF);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);

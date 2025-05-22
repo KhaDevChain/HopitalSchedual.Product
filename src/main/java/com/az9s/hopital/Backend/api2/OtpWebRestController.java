@@ -1,4 +1,4 @@
-package com.az9s.hopital.Backend.api;
+package com.az9s.hopital.Backend.api2;
 
 import java.util.Map;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.az9s.hopital.Backend.service.OtpService;
 
 @RestController
-@RequestMapping("/api/auth")
-public class OtpRestController {
+@RequestMapping("/api2/auth")
+public class OtpWebRestController {
     @Autowired
     private OtpService otpService;
 
