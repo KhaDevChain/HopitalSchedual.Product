@@ -2,6 +2,8 @@ package com.az9s.hopital.Backend.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 import com.az9s.hopital.Backend.utils.dto.RoleDTO;
@@ -67,4 +69,11 @@ public class User implements Serializable {
             this.role.getPermissions()
         );
     }
+
+    @OneToMany(
+        mappedBy = "user",
+        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, 
+        fetch = FetchType.LAZY
+    )
+    private List<TaskNote> taskNotes;
 }
