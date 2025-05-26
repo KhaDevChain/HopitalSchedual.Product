@@ -9,7 +9,7 @@ import com.az9s.hopital.Backend.entity.Role;
 import com.az9s.hopital.Backend.repository.RoleRepository;
 import com.az9s.hopital.Backend.service.RoleService;
 
-@Service
+@Service("logicRoleService")
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;

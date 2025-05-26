@@ -15,6 +15,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -30,7 +32,7 @@ public class Department {
     @Column(columnDefinition = "varchar(60)", nullable = false, unique = true)
     private String departmentName;
 
-     @Column(columnDefinition = "varchar(60)", nullable = false, unique = true)
+    @Column(columnDefinition = "varchar(60)", nullable = false, unique = true)
     private String note;
 
     @Column(name = "created_at")
@@ -39,6 +41,13 @@ public class Department {
     @Column(name = "activated", nullable = false)
     @Enumerated(EnumType.STRING)
     private ActivateEnum activated;
+
+    @ManyToOne(
+        cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+        fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "checkuppart_id", nullable = false)
+    private CheckupPart checkupPart;
 
     @OneToMany(
         mappedBy = "department",

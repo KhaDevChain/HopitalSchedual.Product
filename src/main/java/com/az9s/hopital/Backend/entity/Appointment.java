@@ -47,6 +47,9 @@ public class Appointment {
     @Column(name = "note", columnDefinition = "varchar(300)")
     private String note;
 
+    @Column(name = "record_voice", columnDefinition = "varchar(100)")
+    private String recordVoice;
+
     /**
      * DỮ LIỆU LIÊN KẾT
      */
