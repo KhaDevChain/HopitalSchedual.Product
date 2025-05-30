@@ -11,4 +11,10 @@ public class BasicResponse {
     private String message = null;
     private int status = -1;
     private Object data = null;
+
+    public BasicResponse(String message, int status) {
+        this.message = message;
+        this.status = status;
+        this.data = null;
+    }
 }
