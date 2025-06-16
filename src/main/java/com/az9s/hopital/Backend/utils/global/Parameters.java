@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Parameters {
-    public static final String DOMAIN_HOST = "127.0.0.1";
-    public static final String DOMAIN_API = "http://127.0.0.1:3537";
-    public static final String DOMAIN_WEB = "http://127.0.0.1:3536";
-    public static final String DOMAIN_CMS = "http://127.0.0.1:3336";
+    public static final String DOMAIN_HOST = "localhost";
+    public static final String DOMAIN_API = String.format("http://%s:3537", DOMAIN_HOST);
+    public static final String DOMAIN_WEB = String.format("http://%s:3536", DOMAIN_HOST);
+    public static final String DOMAIN_CMS = String.format("http://%s:3336", DOMAIN_HOST);
 
     // Cookies
     public static final Boolean IS_SECURE = false;
