@@ -39,6 +39,9 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(256)", nullable = false)
     private String password;
 
+    @Column(nullable = false, columnDefinition = "varchar(75)")
+    private String fullName;
+
     @Column(columnDefinition = "varchar(45)", nullable = false)
     private String email;
 

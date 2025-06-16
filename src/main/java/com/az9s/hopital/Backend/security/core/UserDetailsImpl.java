@@ -40,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public String getFullname() {
-        return user.getUserRecord().getFullName();
+        return user.getUserRecord() == null ? user.getFullName() : user.getUserRecord().getFullName();
     }
 
     public String getEmail() {

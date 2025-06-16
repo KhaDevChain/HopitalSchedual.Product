@@ -16,7 +16,8 @@ public class UserDTO {
     private String phone = null;
     private String password = null;
     private String email = null;
+    private String fullName = null;
     private ActivateEnum activated = null;
     private Long roleId = null;
-    private String userDetailId = null;
+    private String userRecordDetailId = null;
 }
