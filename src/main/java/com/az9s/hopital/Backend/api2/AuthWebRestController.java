@@ -38,6 +38,7 @@ import com.az9s.hopital.Backend.utils.option.GenderEnum;
 public class AuthWebRestController {
 
     @Autowired
+    @Qualifier("cacheUserService")
     private UserService userService;
 
     @Autowired
@@ -113,7 +114,11 @@ public class AuthWebRestController {
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
 
-        return ResponseEntity.ok(new LoginResponse(token, request.getPhone()));
+        return ResponseEntity.ok(new LoginResponse(
+            token, 
+            userDetails.getPhone(),
+            null
+        ));
     }
 
     @PostMapping("/logout")

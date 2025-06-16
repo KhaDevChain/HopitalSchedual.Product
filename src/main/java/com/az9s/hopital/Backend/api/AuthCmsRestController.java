@@ -28,6 +28,7 @@ import com.az9s.hopital.Backend.utils.global.Parameters;
 import com.az9s.hopital.Backend.utils.http.request.LoginRequest;
 import com.az9s.hopital.Backend.utils.http.request.SignupRequest;
 import com.az9s.hopital.Backend.utils.http.response.BasicResponse;
+import com.az9s.hopital.Backend.utils.http.response.LoginResponse;
 import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 
 @RestController
@@ -35,6 +36,7 @@ import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 public class AuthCmsRestController {
 
     @Autowired
+    @Qualifier("logicUserService")
     private UserService userService;
 
     @Autowired
@@ -47,7 +49,7 @@ public class AuthCmsRestController {
     private UserDetailSecurity userDetailSecurity;
 
     @Autowired
-    @Qualifier("logicRoleService")
+    @Qualifier("cacheRoleService")
     private RoleService roleService;
 
     @Transactional
@@ -75,8 +77,8 @@ public class AuthCmsRestController {
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
-        if (request.getEmail().isEmpty() || request.getEmail() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email cannot be empty");
+        if (request.getEmail().isEmpty() || request.getEmail() == null || request.getPassword().isEmpty() || request.getPassword() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dữ liệu chưa đầy đủ");
         }
 
         UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getEmail());
@@ -92,7 +94,11 @@ public class AuthCmsRestController {
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new LoginResponse(
+            token, 
+            null,
+            request.getEmail()
+        ));
     }
 
     @PostMapping("/logout")

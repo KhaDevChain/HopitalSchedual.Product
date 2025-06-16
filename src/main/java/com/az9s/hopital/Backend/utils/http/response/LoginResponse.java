@@ -12,10 +12,12 @@ import lombok.NoArgsConstructor;
 public class LoginResponse {
     private String token;
     private String phone;
+    private String email;
     private LocalDateTime loginedDate = LocalDateTime.now();
 
-    public LoginResponse(String token, String phone) {
+    public LoginResponse(String token, String phone, String email) {
         this.phone = phone;
         this.token = token;
+        this.email = email;
     }
 }
