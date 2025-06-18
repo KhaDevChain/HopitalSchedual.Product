@@ -55,19 +55,17 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
     private Optional<String> getTokenFromCookies(HttpServletRequest request) {
-        for (Cookie iterable_element : request.getCookies() ) {
-             System.out.println("iterable_element.getName(): " + iterable_element.getName());
-                System.out.println("iterable_element.getValue(): " + iterable_element.getValue());
-        }
         if (request.getCookies() == null) return Optional.empty();
 
         String cookieName;
-        if (!request.getRequestURI().contains("/api/")) {
+        if (request.getRequestURI().contains("/api/")) {
+            cookieName = "AUTH_CMS_TOKEN";
+        } else if (request.getRequestURI().contains("/api2/")) {
             cookieName = "AUTH_WEB_TOKEN";
         } else {
-            cookieName = "AUTH_CMS_TOKEN";
+            cookieName = "NONE";
         }
-        System.out.println(cookieName);
+        
         return Arrays.stream(request.getCookies())
                 .filter(cookie -> cookieName.equals(cookie.getName()))
                 .map(Cookie::getValue)
