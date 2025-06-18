@@ -114,6 +114,15 @@ public class AuthWebRestController {
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
 
+        Cookie dataCookie = new Cookie("ACCESS_DATA", data);
+        cookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
+        cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
+        cookie.setSecure(Parameters.IS_SECURE);
+        cookie.setPath("/");
+        cookie.setDomain(Parameters.DOMAIN_HOST);
+        cookie.setAttribute("SameSite", "Lax");
+        response.addCookie(dataCookie);
+
         return ResponseEntity.ok(new LoginResponse(
             token, 
             userDetails.getPhone(),
