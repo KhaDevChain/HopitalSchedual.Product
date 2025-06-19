@@ -50,8 +50,8 @@ public class UserCmsRestController {
             userDTO.setPhone(user.getPhone());
             userDTO.setFullName(user.getFullName());
             userDTO.setActivated(user.getActivated());
-            userDTO.setRoleId(user.getRole().getUniqueId());
-            userDTO.setUserRecordDetailId(user.getUserRecord() == null ? null : user.getUserRecord().getUniqueId());
+            userDTO.setRoleDto(user.getRoleDTO());
+            userDTO.setUserRecordDetailId(user.getUserRecord() == null ? null : user.getUserRecord());
         }
         return userDTO;
     }

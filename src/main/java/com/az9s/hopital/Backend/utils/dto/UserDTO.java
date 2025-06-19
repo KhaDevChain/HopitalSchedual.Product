@@ -1,5 +1,6 @@
 package com.az9s.hopital.Backend.utils.dto;
 
+import com.az9s.hopital.Backend.entity.UserRecord;
 import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -18,6 +19,6 @@ public class UserDTO {
     private String email = null;
     private String fullName = null;
     private ActivateEnum activated = null;
-    private Long roleId = null;
-    private String userRecordDetailId = null;
+    private RoleDTO roleDto = null;
+    private UserRecord userRecordDetailId = null;
 }
