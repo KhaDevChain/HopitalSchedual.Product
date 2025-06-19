@@ -83,9 +83,12 @@ public class AuthCmsRestController {
 
         UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getEmail());
         String data = userDetails.getEmail();
-        String token = JwtUtil.generateTokenHaveTime(data);
+        String accessToken = JwtUtil.generateAccessTokenHaveTime(data);
+        String refreshToken = JwtUtil.generateRefreshTokenHaveTime(data);
+        System.out.println("accessToken: " + accessToken);
+        System.out.println("refreshToken: " + refreshToken);
 
-        Cookie cookie = new Cookie("AUTH_CMS_TOKEN", token);
+        Cookie cookie = new Cookie("AUTH_CMS_REFRESH_TOKEN", refreshToken);
         cookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);
@@ -104,7 +107,7 @@ public class AuthCmsRestController {
         response.addCookie(dataCookie);
 
         return ResponseEntity.ok(new LoginResponse(
-            token, 
+            accessToken, 
             null,
             request.getEmail()
         ));
@@ -120,6 +123,15 @@ public class AuthCmsRestController {
         cookie.setDomain(Parameters.DOMAIN_HOST);
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
+
+        Cookie cookieData = new Cookie("ACCESS_DATA_CMS", null);
+        cookieData.setMaxAge(Parameters.COOKIE_OFF);
+        cookieData.setHttpOnly(Parameters.IS_HTTP_ONLY);
+        cookieData.setSecure(Parameters.IS_SECURE);
+        cookieData.setPath("/");
+        cookieData.setDomain(Parameters.DOMAIN_HOST);
+        cookieData.setAttribute("SameSite", "Lax");
+        response.addCookie(cookieData);
 
         return ResponseEntity.ok("Logout successful");
     }

@@ -57,9 +57,11 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                            "/api/auth/signup",
+                            "/api/refresh-token",
+                                        "/api/auth/signup",
                                         "/api/auth/login",
                                         "/api/auth/logout",
+                                        "/api2/refresh-token",
                                         "/api2/auth/signup",
                                         "/api2/auth/login",
                                         "/api2/auth/logout"

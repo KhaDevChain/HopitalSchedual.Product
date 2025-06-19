@@ -32,8 +32,6 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
         Optional<String> tokenOpt = getTokenFromCookies(request);
-        System.out.println("tokenOpt: " + tokenOpt);
-
         if (tokenOpt.isPresent()) {
             String token = tokenOpt.get();
             try {
@@ -45,7 +43,7 @@ public class JwtFilter extends OncePerRequestFilter {
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } else {
-                    throw new IllegalStateException("Token not valid");
+                    throw new IllegalStateException(token + " is not valid");
                 }
             } catch (Exception e) {
                 throw new IllegalStateException(e);
@@ -59,13 +57,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String cookieName;
         if (request.getRequestURI().contains("/api/")) {
-            cookieName = "AUTH_CMS_TOKEN";
+            cookieName = "AUTH_CMS_REFRESH_TOKEN";
         } else if (request.getRequestURI().contains("/api2/")) {
-            cookieName = "AUTH_WEB_TOKEN";
+            cookieName = "AUTH_WEB_REFRESH_TOKEN";
         } else {
             cookieName = "NONE";
         }
-        
+
         return Arrays.stream(request.getCookies())
                 .filter(cookie -> cookieName.equals(cookie.getName()))
                 .map(Cookie::getValue)
