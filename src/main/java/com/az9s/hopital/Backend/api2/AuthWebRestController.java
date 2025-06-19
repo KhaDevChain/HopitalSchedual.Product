@@ -37,8 +37,7 @@ import com.az9s.hopital.Backend.utils.option.GenderEnum;
 @RequestMapping("/api2/auth")
 public class AuthWebRestController {
 
-    @Autowired
-    @Qualifier("cacheUserService")
+    @Autowired @Qualifier("cacheUserService")
     private UserService userService;
 
     @Autowired
@@ -56,17 +55,16 @@ public class AuthWebRestController {
     @Autowired
     private UserDetailSecurity userDetailSecurity;
 
-    @Autowired
-    @Qualifier("logicRoleService")
+    @Autowired @Qualifier("logicRoleService")
     private RoleService roleService;
 
     @Transactional
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
-        // Kiểm tra nếu số điện thoại đã tồn tại
         if (userService.existsByPhone(request.getPhone())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number already exists");
         }
+
         User user = new User();
         user.setUniqueId(UUID.randomUUID().toString());
         user.setPhone(request.getPhone());
@@ -74,15 +72,15 @@ public class AuthWebRestController {
         user.setEmail(request.getEmail());
         user.setActivated(ActivateEnum.ACTIVE);
         user.setRole(roleService.findById(request.getRoleId()));
-        
+
         UserRecord userDetail = new UserRecord();
+        userDetail.setUniqueId(UUID.randomUUID().toString());
+        userDetail.setUser(user);
+        userDetail.setFullName(request.getFullName());
         userDetail.setAddress(request.getAddress());
         userDetail.setAvatar(request.getAvatar());
         userDetail.setDateOfBirth(request.getDateOfBirth());
-        userDetail.setFullName(request.getFullName());
         userDetail.setGender(request.getGender() ? GenderEnum.FEMALE : GenderEnum.MALE);
-        userDetail.setUniqueId(UUID.randomUUID().toString());
-        userDetail.setUser(user);
 
         userRecordService.saveUserDetail(userDetail);
 
@@ -90,7 +88,6 @@ public class AuthWebRestController {
         patient.setUniqueId(UUID.randomUUID().toString());
         patient.setUser(user);
         patient.setUserRecord(userDetail);
-
         patientService.savePatient(patient);
 
         return ResponseEntity.ok(new BasicResponse("User registered successfully!", 200, patient));
@@ -98,60 +95,57 @@ public class AuthWebRestController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
+        if (request.getPhone() == null || request.getPassword() == null ||
+            request.getPhone().isBlank() || request.getPassword().isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone or password cannot be empty");
+        }
+
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getPhone(), request.getPassword())
         );
-        UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getPhone());
-        String data = userDetails.getPhone();
-        String accessToken = JwtUtil.generateAccessTokenHaveTime(data);
-        String refreshToken = JwtUtil.generateRefreshTokenHaveTime(data);
 
-        Cookie cookie = new Cookie("AUTH_WEB_REFRESH_TOKEN", refreshToken);
-        cookie.setMaxAge(Parameters.COOKIE_TOKEN_WEB_TIME);
+        UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getPhone());
+        String phone = userDetails.getPhone();
+
+        String accessToken = JwtUtil.generateAccessTokenHaveTime(phone);
+        String refreshToken = JwtUtil.generateRefreshTokenHaveTime(phone);
+
+        // Set cookies
+        response.addCookie(createCookie("AUTH_WEB_REFRESH_TOKEN", refreshToken, Parameters.GENERAL_REFRESH_TOKEN_TIME));
+        response.addCookie(createCookie("AUTH_WEB_ACCESS_TOKEN", accessToken, Parameters.GENERAL_ACCESS_TOKEN_TIME));
+        response.addCookie(createCookie("ACCESS_DATA_WEB", phone, Parameters.GENERAL_REFRESH_TOKEN_TIME));
+
+        return ResponseEntity.ok(new LoginResponse(accessToken, phone, null));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        response.addCookie(clearCookie("AUTH_WEB_REFRESH_TOKEN"));
+        response.addCookie(clearCookie("AUTH_WEB_ACCESS_TOKEN"));
+        response.addCookie(clearCookie("ACCESS_DATA_WEB"));
+
+        return ResponseEntity.ok("Logout successful");
+    }
+
+    private Cookie createCookie(String name, String value, int maxAge) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(maxAge);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);
         cookie.setPath("/");
         cookie.setDomain(Parameters.DOMAIN_HOST);
         cookie.setAttribute("SameSite", "Lax");
-        response.addCookie(cookie);
-
-        Cookie dataCookie = new Cookie("ACCESS_DATA_WEB", data);
-        dataCookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
-        dataCookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        dataCookie.setSecure(Parameters.IS_SECURE);
-        dataCookie.setPath("/");
-        dataCookie.setDomain(Parameters.DOMAIN_HOST);
-        dataCookie.setAttribute("SameSite", "Lax");
-        response.addCookie(dataCookie);
-
-        return ResponseEntity.ok(new LoginResponse(
-            accessToken, 
-            userDetails.getPhone(),
-            null
-        ));
+        return cookie;
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletResponse response) {
-        Cookie cookie = new Cookie("AUTH_WEB_TOKEN", null);
+    private Cookie clearCookie(String name) {
+        Cookie cookie = new Cookie(name, null);
         cookie.setMaxAge(Parameters.COOKIE_OFF);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);
         cookie.setPath("/");
         cookie.setDomain(Parameters.DOMAIN_HOST);
         cookie.setAttribute("SameSite", "Lax");
-        response.addCookie(cookie);
-
-        Cookie cookieData = new Cookie("ACCESS_DATA_CMS", null);
-        cookieData.setMaxAge(Parameters.COOKIE_OFF);
-        cookieData.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        cookieData.setSecure(Parameters.IS_SECURE);
-        cookieData.setPath("/");
-        cookieData.setDomain(Parameters.DOMAIN_HOST);
-        cookieData.setAttribute("SameSite", "Lax");
-        response.addCookie(cookieData);
-
-        return ResponseEntity.ok("Logout successful");
+        return cookie;
     }
 }
-

@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.az9s.hopital.Backend.security.core.UserDetailSecurityImpl;
@@ -43,10 +44,10 @@ public class JwtFilter extends OncePerRequestFilter {
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } else {
-                    throw new IllegalStateException(token + " is not valid");
+                    logger.warn("Invalid JWT token: " + token);
                 }
             } catch (Exception e) {
-                throw new IllegalStateException(e);
+                logger.error("Error validating JWT token", e);
             }            
         }
         chain.doFilter(request, response);

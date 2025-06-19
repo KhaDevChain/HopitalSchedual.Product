@@ -55,7 +55,6 @@ public class AuthCmsRestController {
     @Transactional
     @PostMapping("/signup")
     public ResponseEntity<?> signupCms(@RequestBody SignupRequest request) {
-        // Kiểm tra nếu số điện thoại đã tồn tại
         if (userService.existsByPhone(request.getPhone())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number already exists");
         }
@@ -71,51 +70,51 @@ public class AuthCmsRestController {
         return ResponseEntity.ok(new BasicResponse("User created successfully", 200, user));
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<?> loginCms(@RequestBody LoginRequest request, HttpServletResponse response) {
+        if (request.getEmail() == null || request.getEmail().isEmpty() ||
+            request.getPassword() == null || request.getPassword().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incomplete login data");
+        }
+
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
         );
-        if (request.getEmail().isEmpty() || request.getEmail() == null || request.getPassword().isEmpty() || request.getPassword() == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dữ liệu chưa đầy đủ");
-        }
 
         UserDetailsImpl userDetails = userDetailSecurity.loadUserByEmailOrPhone(request.getEmail());
         String data = userDetails.getEmail();
         String accessToken = JwtUtil.generateAccessTokenHaveTime(data);
         String refreshToken = JwtUtil.generateRefreshTokenHaveTime(data);
-        System.out.println("accessToken: " + accessToken);
-        System.out.println("refreshToken: " + refreshToken);
 
-        Cookie cookie = new Cookie("AUTH_CMS_REFRESH_TOKEN", refreshToken);
-        cookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
+        addCookie(response, "AUTH_CMS_ACCESS_TOKEN", accessToken, Parameters.GENERAL_ACCESS_TOKEN_TIME);
+        addCookie(response, "AUTH_CMS_REFRESH_TOKEN", refreshToken, Parameters.GENERAL_REFRESH_TOKEN_TIME);
+        addCookie(response, "ACCESS_DATA_CMS", data, Parameters.GENERAL_REFRESH_TOKEN_TIME);
+
+        return ResponseEntity.ok(new LoginResponse(accessToken, null, request.getEmail()));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutCms(HttpServletResponse response) {
+        removeCookie(response, "AUTH_CMS_ACCESS_TOKEN");
+        removeCookie(response, "AUTH_CMS_REFRESH_TOKEN");
+        removeCookie(response, "ACCESS_DATA_CMS");
+
+        return ResponseEntity.ok("Logout successful");
+    }
+
+    private void addCookie(HttpServletResponse response, String name, String value, int maxAge) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setMaxAge(maxAge);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);
         cookie.setPath("/");
         cookie.setDomain(Parameters.DOMAIN_HOST);
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
-
-        Cookie dataCookie = new Cookie("ACCESS_DATA_CMS", data);
-        dataCookie.setMaxAge(Parameters.COOKIE_TOKEN_TIME);
-        dataCookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        dataCookie.setSecure(Parameters.IS_SECURE);
-        dataCookie.setPath("/");
-        dataCookie.setDomain(Parameters.DOMAIN_HOST);
-        dataCookie.setAttribute("SameSite", "Lax");
-        response.addCookie(dataCookie);
-
-        return ResponseEntity.ok(new LoginResponse(
-            accessToken, 
-            null,
-            request.getEmail()
-        ));
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logoutCms(HttpServletResponse response) {
-        Cookie cookie = new Cookie("AUTH_CMS_TOKEN", null);
+    private void removeCookie(HttpServletResponse response, String name) {
+        Cookie cookie = new Cookie(name, null);
         cookie.setMaxAge(Parameters.COOKIE_OFF);
         cookie.setHttpOnly(Parameters.IS_HTTP_ONLY);
         cookie.setSecure(Parameters.IS_SECURE);
@@ -123,17 +122,5 @@ public class AuthCmsRestController {
         cookie.setDomain(Parameters.DOMAIN_HOST);
         cookie.setAttribute("SameSite", "Lax");
         response.addCookie(cookie);
-
-        Cookie cookieData = new Cookie("ACCESS_DATA_CMS", null);
-        cookieData.setMaxAge(Parameters.COOKIE_OFF);
-        cookieData.setHttpOnly(Parameters.IS_HTTP_ONLY);
-        cookieData.setSecure(Parameters.IS_SECURE);
-        cookieData.setPath("/");
-        cookieData.setDomain(Parameters.DOMAIN_HOST);
-        cookieData.setAttribute("SameSite", "Lax");
-        response.addCookie(cookieData);
-
-        return ResponseEntity.ok("Logout successful");
     }
 }
-

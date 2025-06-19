@@ -6,11 +6,13 @@ import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
 
+import com.az9s.hopital.Backend.utils.global.Parameters;
+
 public class JwtUtil {
     private static final String SECRET_KEY = System.getenv("SECRET_KEY");
     private static Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-    private static final long REFRESH_EXPIRATION_TIME = 1 * 60 * 1000; // 1 phút
-    private static final long ACCESS_EXPIRATION_TIME  = 5 * 60 * 1000; // 5 phút
+    private static final long REFRESH_EXPIRATION_TIME = Parameters.GENERAL_REFRESH_TOKEN_TIME * 1000; // 5 phút
+    private static final long ACCESS_EXPIRATION_TIME  = Parameters.GENERAL_ACCESS_TOKEN_TIME * 1000; // 1 phút
 
     // Tạo token có thời hạn mặc định (1 giờ)
     public static String generateRefreshTokenHaveTime(String data) {
