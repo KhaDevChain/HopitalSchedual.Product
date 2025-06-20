@@ -47,6 +47,19 @@ public class HopitalRestController {
         }
     }
 
+    @PostMapping("/edit")
+    public ResponseEntity<?> edit(@RequestBody HopitalRequest hopitalRequest) {
+        if (hopitalRequest != null) {
+            Hopital hopital = asignHopitalEdit(hopitalRequest);
+            Hopital saved = hopitalService.saveHopital(hopital);
+            return ResponseEntity.ok(
+                new HopitalResponse("Edit hopital successfully", saved)
+            );
+        } else {
+            return ResponseEntity.badRequest().body("Hopital is null");
+        }
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody String id) {
         if (id != null && !id.isEmpty()) {

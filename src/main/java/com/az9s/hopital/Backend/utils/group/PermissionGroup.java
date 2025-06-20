@@ -50,253 +50,93 @@ public class PermissionGroup {
 
         //#endregion
 
-        
-        
-        //#region COMPANY PARTNER
 
-        String KEY_COMPANY_PARTNER = "MỤC CÔNG TY ĐỐI TÁC";
+        //#region HOSPITAL
 
-        HashMap<String, String> LIST_COMPANY_PARTNER = new HashMap<String, String>();
-        LIST_COMPANY_PARTNER.put(ADD_COMPANY , "Thêm mới một công ty đối tác");
-        LIST_COMPANY_PARTNER.put(EDIT_COMPANY, "Chỉnh sửa một công ty đối tác");
-        LIST_COMPANY_PARTNER.put(DEL_COMPANY , "Xóa bỏ một công ty đối tác");
-        LIST_COMPANY_PARTNER.put(SHOW_COMPANY, "Xem danh sách các công ty đối tác");
+        String KEY_HOSPITAL = "MỤC BỆNH VIỆN";
 
-        //#endregion
-
-
-        
-        //#region RECEIPT
-
-        String KEY_RECEIPT = "MỤC PHIẾU THU NẠP TIỀN";
-
-        HashMap<String, String> LIST_RECEIPT = new HashMap<String, String>();
-        LIST_RECEIPT.put(ADD_RECEIPT , "Thêm mới một hóa đơn nạp tiền");
-        LIST_RECEIPT.put(EDIT_RECEIPT, "Chỉnh sửa một hóa đơn nạp tiền");
-        LIST_RECEIPT.put(DEL_RECEIPT , "Xóa bỏ một hóa đơn nạp tiền");
-        LIST_RECEIPT.put(SHOW_RECEIPT, "Xem danh sách hóa đơn nạp tiền");
+        HashMap<String, String> LIST_HOSPITAL = new HashMap<String, String>();
+        LIST_HOSPITAL.put(ADD_HOSPITAL, "Thêm mới một bệnh viện");
+        LIST_HOSPITAL.put(EDIT_HOSPITAL, "Chỉnh sửa một bệnh viện");
+        LIST_HOSPITAL.put(DEL_HOSPITAL, "Xóa bỏ một bệnh viện");
+        LIST_HOSPITAL.put(SHOW_HOSPITAL, "Xem danh sách bệnh viện");
 
         //#endregion
 
 
 
-        //#region P_CLOUD
+        //#region DOCTOR
 
-        String KEY_P_CLOUD = "MỤC CLOUD ĐỐI TÁC";
+        String KEY_DOCTOR = "MỤC BÁC SĨ";
 
-        HashMap<String, String> LIST_P_CLOUD = new HashMap<String, String>();
-        LIST_P_CLOUD.put(ADD_P_CLOUD , "Thêm mới một dịch vụ đối tác đám mây");
-        LIST_P_CLOUD.put(EDIT_P_CLOUD, "Chỉnh sửa một dịch vụ đối tác đám mây");
-        LIST_P_CLOUD.put(DEL_P_CLOUD , "Xóa bỏ một dịch vụ đối tác đám mây");
-        LIST_P_CLOUD.put(SHOW_P_CLOUD, "Xem danh sách dịch vụ đối tác đám mây");
-
-        //#endregion
-
-
-        
-        //#region P_DOMAIN
-
-        String KEY_P_DOMAIN = "MỤC DOMAIN ĐỐI TÁC";
-
-        HashMap<String, String> LIST_P_DOMAIN = new HashMap<String, String>();
-        LIST_P_DOMAIN.put(ADD_P_DOMAIN , "Thêm mới một đối tác tên miền");
-        LIST_P_DOMAIN.put(EDIT_P_DOMAIN, "Chỉnh sửa một đối tác tên miền");
-        LIST_P_DOMAIN.put(DEL_P_DOMAIN , "Xóa bỏ một đối tác tên miền");
-        LIST_P_DOMAIN.put(SHOW_P_DOMAIN, "Xem danh sách đối tác tên miền");
+        HashMap<String, String> LIST_DOCTOR = new HashMap<String, String>();
+        LIST_DOCTOR.put(ADD_DOCTOR, "Thêm mới một bác sĩ");
+        LIST_DOCTOR.put(EDIT_DOCTOR, "Chỉnh sửa một bác sĩ");
+        LIST_DOCTOR.put(DEL_DOCTOR, "Xóa bỏ một bác sĩ");
+        LIST_DOCTOR.put(SHOW_DOCTOR, "Xem danh sách bác sĩ");
 
         //#endregion
 
+        //#region NURSE
 
-        
-        //#region P_EMAIL
+        String KEY_NURSE = "MỤC Y TÁ";
 
-        String KEY_P_EMAIL = "MỤC EMAIL ĐỐI TÁC";
-
-        HashMap<String, String> LIST_P_EMAIL = new HashMap<String, String>();
-        LIST_P_EMAIL.put(ADD_P_EMAIL , "Thêm mới một đối tác dịch vụ email");
-        LIST_P_EMAIL.put(EDIT_P_EMAIL, "Chỉnh sửa một đối tác dịch vụ email");
-        LIST_P_EMAIL.put(DEL_P_EMAIL , "Xóa bỏ một đối tác dịch vụ email");
-        LIST_P_EMAIL.put(SHOW_P_EMAIL, "Xem danh sách đối tác dịch vụ email");
+        HashMap<String, String> LIST_NURSE = new HashMap<String, String>();
+        LIST_NURSE.put(ADD_NURSE, "Thêm mới một y tá");
+        LIST_NURSE.put(EDIT_NURSE, "Chỉnh sửa một y tá");
+        LIST_NURSE.put(DEL_NURSE, "Xóa bỏ một y tá");
+        LIST_NURSE.put(SHOW_NURSE, "Xem danh sách y tá");
 
         //#endregion
 
-        
+        //#region PATIENT
 
-        //#region P_HOSTING
+        String KEY_PATIENT = "MỤC BỆNH NHÂN";
 
-        String KEY_P_HOSTING = "MỤC HOSTING ĐỐI TÁC";
-
-        HashMap<String, String> LIST_P_HOSTING = new HashMap<String, String>();
-        LIST_P_HOSTING.put(ADD_P_HOSTING , "Thêm mới một đối tác dịch vụ hosting");
-        LIST_P_HOSTING.put(EDIT_P_HOSTING, "Chỉnh sửa một đối tác dịch vụ hosting");
-        LIST_P_HOSTING.put(DEL_P_HOSTING , "Xóa bỏ một đối tác dịch vụ hosting");
-        LIST_P_HOSTING.put(SHOW_P_HOSTING, "Xem danh sách đối tác dịch vụ hosting");
+        HashMap<String, String> LIST_PATIENT = new HashMap<String, String>();
+        LIST_PATIENT.put(ADD_PATIENT, "Thêm mới một bệnh nhân");
+        LIST_PATIENT.put(EDIT_PATIENT, "Chỉnh sửa một bệnh nhân");
+        LIST_PATIENT.put(DEL_PATIENT, "Xóa bỏ một bệnh nhân");
+        LIST_PATIENT.put(SHOW_PATIENT, "Xem danh sách bệnh nhân");
 
         //#endregion
 
+        //#region USER_RECORD
 
-        //#region I_CLOUD
+        String KEY_USER_RECORD = "MỤC HỒ SƠ NGƯỜI DÙNG";
 
-        String KEY_I_CLOUD = "MỤC DỊCH VỤ INET CLOUD";
-
-        HashMap<String, String> LIST_I_CLOUD = new HashMap<String, String>();
-        LIST_I_CLOUD.put(ADD_I_CLOUD , "Thêm mới một dịch vụ Inet đám mây");
-        LIST_I_CLOUD.put(EDIT_I_CLOUD, "Chỉnh sửa một dịch vụ Inet đám mây");
-        LIST_I_CLOUD.put(DEL_I_CLOUD , "Xóa bỏ một dịch vụ Inet đám mây");
-        LIST_I_CLOUD.put(SHOW_I_CLOUD, "Xem danh sách dịch vụ Inet đám mây");
-
-        //#endregion
-
-
-
-        //#region I_DOMAIN
-
-        String KEY_I_DOMAIN = "MỤC DỊCH VỤ INET DOMAIN";
-
-        HashMap<String, String> LIST_I_DOMAIN = new HashMap<String, String>();
-        LIST_I_DOMAIN.put(ADD_I_DOMAIN , "Thêm mới một Inet tên miền");
-        LIST_I_DOMAIN.put(EDIT_I_DOMAIN, "Chỉnh sửa một Inet tên miền");
-        LIST_I_DOMAIN.put(DEL_I_DOMAIN , "Xóa bỏ một Inet tên miền");
-        LIST_I_DOMAIN.put(SHOW_I_DOMAIN, "Xem danh sách Inet tên miền");
+        HashMap<String, String> LIST_USER_RECORD = new HashMap<String, String>();
+        LIST_USER_RECORD.put(ADD_USER_RECORD, "Thêm mới một hồ sơ người dùng");
+        LIST_USER_RECORD.put(EDIT_USER_RECORD, "Chỉnh sửa một hồ sơ người dùng");
+        LIST_USER_RECORD.put(DEL_USER_RECORD, "Xóa bỏ một hồ sơ người dùng");
+        LIST_USER_RECORD.put(SHOW_USER_RECORD, "Xem danh sách hồ sơ người dùng");
 
         //#endregion
 
+        //#region PHARMACY
 
+        String KEY_PHARMACY = "MỤC NHÀ THUỐC";
 
-        //#region I_EMAIL
-
-        String KEY_I_EMAIL = "MỤC DỊCH VỤ INET EMAIL";
-
-        HashMap<String, String> LIST_I_EMAIL = new HashMap<String, String>();
-        LIST_I_EMAIL.put(ADD_I_EMAIL , "Thêm mới một Inet dịch vụ email");
-        LIST_I_EMAIL.put(EDIT_I_EMAIL, "Chỉnh sửa một Inet dịch vụ email");
-        LIST_I_EMAIL.put(DEL_I_EMAIL , "Xóa bỏ một Inet dịch vụ email");
-        LIST_I_EMAIL.put(SHOW_I_EMAIL, "Xem danh sách dịch vụ Inet email");
+        HashMap<String, String> LIST_PHARMACY = new HashMap<String, String>();
+        LIST_PHARMACY.put(ADD_PHARMACY, "Thêm mới một nhà thuốc");
+        LIST_PHARMACY.put(EDIT_PHARMACY, "Chỉnh sửa một nhà thuốc");
+        LIST_PHARMACY.put(DEL_PHARMACY, "Xóa bỏ một nhà thuốc");
+        LIST_PHARMACY.put(SHOW_PHARMACY, "Xem danh sách nhà thuốc");
 
         //#endregion
 
+        //#region DEPARTMENT
 
+        String KEY_DEPARTMENT = "MỤC KHOA";
 
-        //#region I_HOSTING
-
-        String KEY_I_HOSTING = "MỤC DỊCH VỤ INET HOSTING";
-
-        HashMap<String, String> LIST_I_HOSTING = new HashMap<String, String>();
-        LIST_I_HOSTING.put(ADD_I_HOSTING , "Thêm mới một Inet dịch vụ hosting");
-        LIST_I_HOSTING.put(EDIT_I_HOSTING, "Chỉnh sửa một Inet dịch vụ hosting");
-        LIST_I_HOSTING.put(DEL_I_HOSTING , "Xóa bỏ một Inet dịch vụ hosting");
-        LIST_I_HOSTING.put(SHOW_I_HOSTING, "Xem danh sách dịch vụ Inet hosting");
+        HashMap<String, String> LIST_DEPARTMENT = new HashMap<String, String>();
+        LIST_DEPARTMENT.put(ADD_DEPARTMENT, "Thêm mới một khoa");
+        LIST_DEPARTMENT.put(EDIT_DEPARTMENT, "Chỉnh sửa một khoa");
+        LIST_DEPARTMENT.put(DEL_DEPARTMENT, "Xóa bỏ một khoa");
+        LIST_DEPARTMENT.put(SHOW_DEPARTMENT, "Xem danh sách khoa");
 
         //#endregion
 
-
-
-        //#region AZ_CLOUD
-
-        String KEY_AZ_CLOUD = "MỤC DỊCH VỤ AZ9S CLOUD";
-
-        HashMap<String, String> LIST_AZ_CLOUD = new HashMap<String, String>();
-        LIST_AZ_CLOUD.put(ADD_AZ_CLOUD , "Thêm mới một dịch vụ đám mây AZ9S");
-        LIST_AZ_CLOUD.put(EDIT_AZ_CLOUD, "Chỉnh sửa một dịch vụ đám mây AZ9S");
-        LIST_AZ_CLOUD.put(DEL_AZ_CLOUD , "Xóa bỏ một dịch vụ đám mây AZ9S");
-        LIST_AZ_CLOUD.put(SHOW_AZ_CLOUD, "Xem danh sách dịch vụ đám mây AZ9S");
-
-        //#endregion
-
-
-
-        //#region AZ_DOMAIN
-
-        String KEY_AZ_DOMAIN = "MỤC DỊCH VỤ AZ9S DOMAIN";
-
-        HashMap<String, String> LIST_AZ_DOMAIN = new HashMap<String, String>();
-        LIST_AZ_DOMAIN.put(ADD_AZ_DOMAIN , "Thêm mới một tên miền AZ9S");
-        LIST_AZ_DOMAIN.put(EDIT_AZ_DOMAIN, "Chỉnh sửa một tên miền AZ9S");
-        LIST_AZ_DOMAIN.put(DEL_AZ_DOMAIN , "Xóa bỏ một tên miền AZ9S");
-        LIST_AZ_DOMAIN.put(SHOW_AZ_DOMAIN, "Xem danh sách tên miền AZ9S");
-
-        //#endregion
-
-
-
-        //#region AZ_EMAIL
-
-        String KEY_AZ_EMAIL = "MỤC DỊCH VỤ AZ9S EMAIL";
-
-        HashMap<String, String> LIST_AZ_EMAIL = new HashMap<String, String>();
-        LIST_AZ_EMAIL.put(ADD_AZ_EMAIL , "Thêm mới một dịch vụ email AZ9S");
-        LIST_AZ_EMAIL.put(EDIT_AZ_EMAIL, "Chỉnh sửa một dịch vụ email AZ9S");
-        LIST_AZ_EMAIL.put(DEL_AZ_EMAIL , "Xóa bỏ một dịch vụ email AZ9S");
-        LIST_AZ_EMAIL.put(SHOW_AZ_EMAIL, "Xem danh sách dịch vụ email AZ9S");
-
-        //#endregion
-
-
-
-        //#region AZ_HOSTING
-
-        String KEY_AZ_HOSTING = "MỤC DỊCH VỤ AZ9S HOSTING";
-
-        HashMap<String, String> LIST_AZ_HOSTING = new HashMap<String, String>();
-        LIST_AZ_HOSTING.put(ADD_AZ_HOSTING , "Thêm mới một dịch vụ hosting AZ9S");
-        LIST_AZ_HOSTING.put(EDIT_AZ_HOSTING, "Chỉnh sửa một dịch vụ hosting AZ9S");
-        LIST_AZ_HOSTING.put(DEL_AZ_HOSTING , "Xóa bỏ một dịch vụ hosting AZ9S");
-        LIST_AZ_HOSTING.put(SHOW_AZ_HOSTING, "Xem danh sách dịch vụ hosting AZ9S");
-
-        //#endregion
-
-
-        //#region COMM_DETAIL
-
-        String KEY_COMM_DETAIL = "MỤC HOA HỒNG CHI TIẾT";
-
-        HashMap<String, String> LIST_COMM_DETAIL = new HashMap<String, String>();
-        LIST_COMM_DETAIL.put(ADD_COMM_DETAIL, "Thêm mới một chi tiết giao dịch hoa hồng");
-        LIST_COMM_DETAIL.put(EDIT_COMM_DETAIL, "Chỉnh sửa một chi tiết giao dịch hoa hồng");
-        LIST_COMM_DETAIL.put(DEL_COMM_DETAIL, "Xóa bỏ một chi tiết giao dịch hoa hồng");
-        LIST_COMM_DETAIL.put(SHOW_COMM_DETAIL, "Xem danh sách chi tiết giao dịch hoa hồng");
-
-        //#endregion
-
-
-        //#region COMM
-
-        String KEY_COMM = "MỤC HOA HỒNG";
-
-        HashMap<String, String> LIST_COMM = new HashMap<String, String>();
-        LIST_COMM.put(ADD_COMM, "Thêm mới một giao dịch hoa hồng");
-        LIST_COMM.put(EDIT_COMM, "Chỉnh sửa một giao dịch hoa hồng");
-        LIST_COMM.put(DEL_COMM, "Xóa bỏ một giao dịch hoa hồng");
-        LIST_COMM.put(SHOW_COMM, "Xem danh sách giao dịch hoa hồng");
-
-        //#endregion
-
-
-        //#region EWALLET_COMP
-
-        String KEY_EWALLET_COMP = "MỤC VÍ NGƯỜI DÙNG CỦA ĐỐI TÁC";
-
-        HashMap<String, String> LIST_EWALLET_COMP = new HashMap<String, String>();
-        LIST_EWALLET_COMP.put(ADD_EWALLET_COMP, "Thêm mới một ví điện tử đối tác");
-        LIST_EWALLET_COMP.put(EDIT_EWALLET_COMP, "Chỉnh sửa một ví điện tử đối tác");
-        LIST_EWALLET_COMP.put(DEL_EWALLET_COMP, "Xóa bỏ một ví điện tử đối tác");
-        LIST_EWALLET_COMP.put(SHOW_EWALLET_COMP, "Xem danh sách ví điện tử đối tác");
-
-        //#endregion
-
-
-        //#region EWALLET
-
-        String KEY_EWALLET = "MỤC VÍ NGƯỜI DÙNG";
-
-        HashMap<String, String> LIST_EWALLET = new HashMap<String, String>();
-        LIST_EWALLET.put(ADD_EWALLET, "Thêm mới một ví điện tử");
-        LIST_EWALLET.put(EDIT_EWALLET, "Chỉnh sửa một ví điện tử");
-        LIST_EWALLET.put(DEL_EWALLET, "Xóa bỏ một ví điện tử");
-        LIST_EWALLET.put(SHOW_EWALLET, "Xem danh sách ví điện tử");
-
-        //#endregion
-        
 
         /*********
          * LƯU TOÀN BỘ PERMISSION
@@ -304,24 +144,14 @@ public class PermissionGroup {
         permissions.put(KEY_USER, LIST_USER);
         permissions.put(KEY_ROLE, LIST_ROLE);
         permissions.put(KEY_PERMISSION, LIST_PERMISSIONS);
-        permissions.put(KEY_COMPANY_PARTNER, LIST_COMPANY_PARTNER);
-        permissions.put(KEY_RECEIPT, LIST_RECEIPT);
-        permissions.put(KEY_P_CLOUD, LIST_P_CLOUD);
-        permissions.put(KEY_P_DOMAIN, LIST_P_DOMAIN);
-        permissions.put(KEY_P_EMAIL, LIST_P_EMAIL);
-        permissions.put(KEY_P_HOSTING, LIST_P_HOSTING);
-        permissions.put(KEY_COMM_DETAIL, LIST_COMM_DETAIL);
-        permissions.put(KEY_COMM, LIST_COMM);
-        permissions.put(KEY_EWALLET_COMP, LIST_EWALLET_COMP);
-        permissions.put(KEY_EWALLET, LIST_EWALLET);
-        permissions.put(KEY_I_CLOUD, LIST_I_CLOUD);
-        permissions.put(KEY_I_DOMAIN, LIST_I_DOMAIN);
-        permissions.put(KEY_I_EMAIL, LIST_I_EMAIL);
-        permissions.put(KEY_I_HOSTING, LIST_I_HOSTING);
-        permissions.put(KEY_AZ_CLOUD, LIST_AZ_CLOUD);
-        permissions.put(KEY_AZ_DOMAIN, LIST_AZ_DOMAIN);
-        permissions.put(KEY_AZ_EMAIL, LIST_AZ_EMAIL);
-        permissions.put(KEY_AZ_HOSTING, LIST_AZ_HOSTING);
+        permissions.put(KEY_USER, LIST_USER);
+        permissions.put(KEY_HOSPITAL, LIST_HOSPITAL);
+        permissions.put(KEY_DOCTOR, LIST_DOCTOR);
+        permissions.put(KEY_NURSE, LIST_NURSE);
+        permissions.put(KEY_PATIENT, LIST_PATIENT);
+        permissions.put(KEY_USER_RECORD, LIST_USER_RECORD);
+        permissions.put(KEY_PHARMACY, LIST_PHARMACY);
+        permissions.put(KEY_DEPARTMENT, LIST_DEPARTMENT);
         return permissions;
     }
 
@@ -371,72 +201,39 @@ public class PermissionGroup {
     public static final String DEL_P_HOSTING  = "[del-p-hosting]";
     public static final String SHOW_P_HOSTING = "[show-p-hosting]";
 
-    // I_CLOUD
-    public static final String ADD_I_CLOUD = "[add-i-cloud]";
-    public static final String EDIT_I_CLOUD = "[edit-i-cloud]";
-    public static final String DEL_I_CLOUD = "[del-i-cloud]";
-    public static final String SHOW_I_CLOUD = "[show-i-cloud]";
-
-    // I_DOMAIN
-    public static final String ADD_I_DOMAIN = "[add-i-domain]";
-    public static final String EDIT_I_DOMAIN = "[edit-i-domain]";
-    public static final String DEL_I_DOMAIN = "[del-i-domain]";
-    public static final String SHOW_I_DOMAIN = "[show-i-domain]";
-
-    // I_EMAIL
-    public static final String ADD_I_EMAIL = "[add-i-email]";
-    public static final String EDIT_I_EMAIL = "[edit-i-email]";
-    public static final String DEL_I_EMAIL = "[del-i-email]";
-    public static final String SHOW_I_EMAIL = "[show-i-email]";
-
-    // I_HOSTING
-    public static final String ADD_I_HOSTING = "[add-i-hosting]";
-    public static final String EDIT_I_HOSTING = "[edit-i-hosting]";
-    public static final String DEL_I_HOSTING = "[del-i-hosting]";
-    public static final String SHOW_I_HOSTING = "[show-i-hosting]";
-
-    // AZ_CLOUD
-    public static final String ADD_AZ_CLOUD = "[add-az-cloud]";
-    public static final String EDIT_AZ_CLOUD = "[edit-az-cloud]";
-    public static final String DEL_AZ_CLOUD = "[del-az-cloud]";
-    public static final String SHOW_AZ_CLOUD = "[show-az-cloud]";
-
-    // AZ_DOMAIN
-    public static final String ADD_AZ_DOMAIN = "[add-az-domain]";
-    public static final String EDIT_AZ_DOMAIN = "[edit-az-domain]";
-    public static final String DEL_AZ_DOMAIN = "[del-az-domain]";
-    public static final String SHOW_AZ_DOMAIN = "[show-az-domain]";
-
-    // AZ_EMAIL
-    public static final String ADD_AZ_EMAIL = "[add-az-email]";
-    public static final String EDIT_AZ_EMAIL = "[edit-az-email]";
-    public static final String DEL_AZ_EMAIL = "[del-az-email]";
-    public static final String SHOW_AZ_EMAIL = "[show-az-email]";
-
-    // AZ_HOSTING
-    public static final String ADD_AZ_HOSTING = "[add-az-hosting]";
-    public static final String EDIT_AZ_HOSTING = "[edit-az-hosting]";
-    public static final String DEL_AZ_HOSTING = "[del-az-hosting]";
-    public static final String SHOW_AZ_HOSTING = "[show-az-hosting]";
-
-    public static final String ADD_COMM_DETAIL = "[add-comm-detail]";
-    public static final String EDIT_COMM_DETAIL = "[edit-comm-detail]";
-    public static final String DEL_COMM_DETAIL = "[del-comm-detail]";
-    public static final String SHOW_COMM_DETAIL = "[show-comm-detail]";
-
-    public static final String ADD_COMM = "[add-comm]";
-    public static final String EDIT_COMM = "[edit-comm]";
-    public static final String DEL_COMM = "[del-comm]";
-    public static final String SHOW_COMM = "[show-comm]";
-
-    public static final String ADD_EWALLET_COMP = "[add-ewallet-comp]";
-    public static final String EDIT_EWALLET_COMP = "[edit-ewallet-comp]";
-    public static final String DEL_EWALLET_COMP = "[del-ewallet-comp]";
-    public static final String SHOW_EWALLET_COMP = "[show-ewallet-comp]";
-
-    public static final String ADD_EWALLET = "[add-ewallet]";
-    public static final String EDIT_EWALLET = "[edit-ewallet]";
-    public static final String DEL_EWALLET = "[del-ewallet]";
-    public static final String SHOW_EWALLET = "[show-ewallet]";
-
+    public static final String ADD_HOSPITAL  = "[add-hospital]";
+    public static final String EDIT_HOSPITAL = "[edit-hospital]";
+    public static final String DEL_HOSPITAL  = "[del-hospital]";
+    public static final String SHOW_HOSPITAL = "[show-hospital]";
+    
+    
+    public static final String ADD_DOCTOR  = "[add-doctor]";
+    public static final String EDIT_DOCTOR = "[edit-doctor]";
+    public static final String DEL_DOCTOR  = "[del-doctor]";
+    public static final String SHOW_DOCTOR = "[show-doctor]";
+    
+    public static final String ADD_NURSE  = "[add-nurse]";
+    public static final String EDIT_NURSE = "[edit-nurse]";
+    public static final String DEL_NURSE  = "[del-nurse]";
+    public static final String SHOW_NURSE = "[show-nurse]";
+    
+    public static final String ADD_PATIENT  = "[add-patient]";
+    public static final String EDIT_PATIENT = "[edit-patient]";
+    public static final String DEL_PATIENT  = "[del-patient]";
+    public static final String SHOW_PATIENT = "[show-patient]";
+    
+    public static final String ADD_USER_RECORD  = "[add-user-record]";
+    public static final String EDIT_USER_RECORD = "[edit-user-record]";
+    public static final String DEL_USER_RECORD  = "[del-user-record]";
+    public static final String SHOW_USER_RECORD = "[show-user-record]";
+    
+    public static final String ADD_PHARMACY  = "[add-pharmacy]";
+    public static final String EDIT_PHARMACY = "[edit-pharmacy]";
+    public static final String DEL_PHARMACY  = "[del-pharmacy]";
+    public static final String SHOW_PHARMACY = "[show-pharmacy]";
+    
+    public static final String ADD_DEPARTMENT  = "[add-department]";
+    public static final String EDIT_DEPARTMENT = "[edit-department]";
+    public static final String DEL_DEPARTMENT  = "[del-department]";
+    public static final String SHOW_DEPARTMENT = "[show-department]";
 }

@@ -45,7 +45,11 @@ public class Role implements Serializable {
             permission.getUniqueId(),
             permission.getGroupName(),
             permission.getGroupPermission(),
-            permission.getActivated()
+            permission.getActivated(),
+            permission.getDescription(),
+            permission.getRole() == null ? null : permission.getRole().getUniqueId(),
+            permission.getRole() == null ? null : permission.getRole().getRoleName(),
+            null
         )).toList();
     }
 }

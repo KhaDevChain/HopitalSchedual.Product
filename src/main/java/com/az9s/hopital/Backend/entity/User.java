@@ -45,6 +45,9 @@ public class User implements Serializable {
     @Column(columnDefinition = "varchar(45)", nullable = false)
     private String email;
 
+    @Column(columnDefinition = "varchar(40)")
+    private String permissionGroup;
+
     @Column(name = "created_at", columnDefinition = "datetime")
     private LocalDateTime createdAt = LocalDateTime.now();
 
