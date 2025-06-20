@@ -2,6 +2,8 @@ package com.az9s.hopital.Backend.utils.http.response;
 
 import java.time.LocalDateTime;
 
+import com.az9s.hopital.Backend.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,13 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoginResponse {
     private String token;
-    private String phone;
-    private String email;
+    private User user;
     private LocalDateTime loginedDate = LocalDateTime.now();
 
-    public LoginResponse(String token, String phone, String email) {
-        this.phone = phone;
+    public LoginResponse(String token, User user) {
+        this.user = user;
         this.token = token;
-        this.email = email;
+        this.loginedDate = LocalDateTime.now();
     }
 }

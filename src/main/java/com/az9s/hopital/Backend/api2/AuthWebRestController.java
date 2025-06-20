@@ -115,7 +115,7 @@ public class AuthWebRestController {
         response.addCookie(createCookie("AUTH_WEB_ACCESS_TOKEN", accessToken, Parameters.GENERAL_ACCESS_TOKEN_TIME));
         response.addCookie(createCookie("ACCESS_DATA_WEB", phone, Parameters.GENERAL_REFRESH_TOKEN_TIME));
 
-        return ResponseEntity.ok(new LoginResponse(accessToken, phone, null));
+        return ResponseEntity.ok(new LoginResponse(accessToken, userDetails.getUser()));
     }
 
     @PostMapping("/logout")

@@ -90,7 +90,7 @@ public class AuthCmsRestController {
         addCookie(response, "AUTH_CMS_REFRESH_TOKEN", refreshToken, Parameters.GENERAL_REFRESH_TOKEN_TIME);
         addCookie(response, "ACCESS_DATA_CMS", data, Parameters.GENERAL_REFRESH_TOKEN_TIME);
 
-        return ResponseEntity.ok(new LoginResponse(accessToken, null, request.getEmail()));
+        return ResponseEntity.ok(new LoginResponse(accessToken, userDetails.getUser()));
     }
 
     @PostMapping("/logout")
