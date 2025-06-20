@@ -28,12 +28,18 @@ public class UserCmsRestController {
 
     @PostMapping("/me")
     public ResponseEntity<?> getDetail(HttpServletRequest request) {
-        String token = this.getAccessTokenFromCookie(request).get();
-        String data = JwtUtil.getDataFromToken(token);
-        User user = userService.findByEmail(data);
-        if (user != null) {
-            return ResponseEntity.ok(new BasicResponse("Successfully", 200, this.asignUserDTO(user)));
-        }
+        try {
+            String token = this.getAccessTokenFromCookie(request).get();
+            String data = JwtUtil.getDataFromToken(token);
+            if (data == null || data.isEmpty()) {
+                return ResponseEntity.badRequest().body("User not found");
+            }
+            User user = userService.findByEmail(data);
+            if (user != null) {
+                return ResponseEntity.ok(new BasicResponse("Successfully", 200, this.asignUserDTO(user)));
+            }
+        } catch (Exception e) {}
+        
         return ResponseEntity.badRequest().body("User not found");
     }
 
