@@ -12,7 +12,7 @@ public class Parameters {
     // Cookies
     public static final Boolean IS_SECURE = false;
     public static final Boolean IS_HTTP_ONLY = true;
-    public static final Integer GENERAL_REFRESH_TOKEN_TIME = 5 * 60; // 5P // 7 days: 7 * 24 * 60 * 60
-    public static final Integer GENERAL_ACCESS_TOKEN_TIME = 1 * 60; // 1P // 15 phut: 15 * 60
+    public static final Integer GENERAL_REFRESH_TOKEN_TIME = 7 * 24 * 60 * 60; // 5P: 5 * 60 // 7 days: 7 * 24 * 60 * 60
+    public static final Integer GENERAL_ACCESS_TOKEN_TIME = 15 * 60; // 1P: 1 * 60 // 15 phut: 15 * 60
     public static final Integer COOKIE_OFF = 0;
 }
