@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.az9s.hopital.Backend.entity.User;
+import com.az9s.hopital.Backend.security.jwt.JwtUtil;
 import com.az9s.hopital.Backend.service.UserService;
 import com.az9s.hopital.Backend.utils.dto.UserDTO;
 import com.az9s.hopital.Backend.utils.http.response.BasicResponse;
@@ -27,7 +28,8 @@ public class UserCmsRestController {
 
     @PostMapping("/me")
     public ResponseEntity<?> getDetail(HttpServletRequest request) {
-        String data = this.getDataFromCookie(request).get();
+        String token = this.getAccessTokenFromCookie(request).get();
+        String data = JwtUtil.getDataFromToken(token);
         User user = userService.findByEmail(data);
         if (user != null) {
             return ResponseEntity.ok(new BasicResponse("Successfully", 200, this.asignUserDTO(user)));
@@ -61,14 +63,14 @@ public class UserCmsRestController {
      * @param request
      * @return
      */
-    public Optional<String> getDataFromCookie(HttpServletRequest request) {
+    public Optional<String> getAccessTokenFromCookie(HttpServletRequest request) {
         if (request.getCookies() == null) return Optional.empty();
 
         String cookieName;
         if (request.getRequestURI().contains("/api/")) {
-            cookieName = "ACCESS_DATA_CMS";
+            cookieName = "AUTH_CMS_ACCESS_TOKEN";
         } else if (request.getRequestURI().contains("/api2/")) {
-            cookieName = "ACCESS_DATA_WEB";
+            cookieName = "AUTH_WEB_ACCESS_TOKEN";
         } else {
             cookieName = "NONE";
         }
