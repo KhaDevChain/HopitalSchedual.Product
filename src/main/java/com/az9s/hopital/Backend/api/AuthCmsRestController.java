@@ -49,7 +49,7 @@ public class AuthCmsRestController {
     private UserDetailSecurity userDetailSecurity;
 
     @Autowired
-    @Qualifier("cacheRoleService")
+    @Qualifier("logicRoleService")
     private RoleService roleService;
 
     @Transactional

@@ -14,7 +14,7 @@ import com.az9s.hopital.Backend.service.CheckupPartService;
 @RequestMapping("/api/checkpart")
 public class CheckPartRestController {
     @Autowired
-    @Qualifier("cacheCheckPartService")
+    @Qualifier("logicCheckupPartService")
     private CheckupPartService checkupPartService;
 
     @GetMapping("/all")

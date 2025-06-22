@@ -13,7 +13,7 @@ import com.az9s.hopital.Backend.service.RoleService;
 @RequestMapping("/api/role")
 public class RoleRestController {
     @Autowired
-    @Qualifier("cacheRoleService")
+    @Qualifier("logicRoleService")
     private RoleService roleService;
     
     @GetMapping("/all")

@@ -24,7 +24,7 @@ import com.az9s.hopital.Backend.utils.option.ActivateEnum;
 @RequestMapping("/api/hopital")
 public class HopitalRestController {
     @Autowired
-    @Qualifier("cacheHopitalService")
+    @Qualifier("logicHopitalService")
     private HopitalService hopitalService;
 
     @GetMapping("/all")

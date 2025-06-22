@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/permissions")
 public class PermissionRestController {
     @Autowired
-    @Qualifier("cachePermissionService")
+    @Qualifier("logicPermissionService")
     private PermissionService permissionService;
 
     @Autowired
-    @Qualifier("cacheRoleService")
+    @Qualifier("logicRoleService")
     private RoleService roleService;
 
     @GetMapping("/findAll")
