@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class TokenCmsRestController {
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        String refreshToken = Arrays.stream(request.getCookies())
+        String refreshToken = request.getCookies() == null ? null : Arrays.stream(request.getCookies())
             .filter(c -> "AUTH_CMS_REFRESH_TOKEN".equals(c.getName()))
             .findFirst()
             .map(Cookie::getValue)
