@@ -24,8 +24,9 @@ public class HopitalRequest {
     private String logo;
     private String contract;
     private String representName;
+    private String representPhone;
     private String representJob;
-    private Boolean activated;
+    private String activated;
 
     public HopitalTypeEnum getTypeEnum() {
         return type != null ? 
@@ -34,6 +35,6 @@ public class HopitalRequest {
 
     public ActivateEnum getActivatedEnum() {
         return activated != null ? 
-                ActivateEnum.valueOf(activated ? "ACTIVE" : "INACTIVE") : null;
+                ActivateEnum.valueOf(activated) : null;
     }
 }

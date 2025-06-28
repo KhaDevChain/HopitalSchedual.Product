@@ -74,6 +74,9 @@ public class Hopital {
     @Column(name = "represent_name", columnDefinition = "varchar(60)")
     private String representName;
 
+    @Column(name = "represent_phone", columnDefinition = "varchar(15)")
+    private String representPhone;
+
     @Column(name = "represent_job", columnDefinition = "varchar(60)")
     private String representJob;
 

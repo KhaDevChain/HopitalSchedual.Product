@@ -100,6 +100,7 @@ public class HopitalRestController {
                 hopital.setLogo(hopitalRequest.getLogo());
                 hopital.setContract(hopitalRequest.getContract());
                 hopital.setRepresentName(hopitalRequest.getRepresentName());
+                hopital.setRepresentPhone(hopitalRequest.getRepresentPhone());
                 hopital.setRepresentJob(hopitalRequest.getRepresentJob());
                 hopital.setActivated(hopitalRequest.getActivatedEnum());
             }
