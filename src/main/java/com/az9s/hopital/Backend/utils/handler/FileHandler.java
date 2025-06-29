@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class FileHandler {
 
@@ -37,5 +40,28 @@ public class FileHandler {
 
         // Đọc và trả về nội dung file
         return Files.readAllBytes(filePath);
+    }
+
+    public String storeFile(MultipartFile file, String moduleFolder, String originPath) throws IOException {
+        if (file == null || file.isEmpty()) throw new IOException("Tệp rỗng hoặc không hợp lệ");
+        
+        String originalFileName = file.getOriginalFilename();
+        if (originalFileName == null || originalFileName.trim().isEmpty()) {
+            throw new IOException("Tên file không hợp lệ");
+        }
+
+        // Tạo thư mục nếu chưa có
+        Path folder = Paths.get(originPath, moduleFolder);
+        if (!Files.exists(folder)) {
+            Files.createDirectories(folder);
+        }
+
+        // Tạo tên file duy nhất
+        String filename = file.getOriginalFilename();
+        Path filePath = folder.resolve(filename);
+
+        Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+        return "/assets/" + moduleFolder + "/" + filename;
     }
 }
