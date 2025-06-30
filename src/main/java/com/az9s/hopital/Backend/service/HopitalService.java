@@ -8,5 +8,6 @@ public interface HopitalService {
     Hopital findById(String id);
     Hopital saveHopital(Hopital hopital);
     List<Hopital> findAll();
+    List<Hopital> findByContractIsNotNullAndContractNot();
     void deleteById(String id);
 }

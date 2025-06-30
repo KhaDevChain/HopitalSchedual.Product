@@ -48,7 +48,7 @@ public class HopitalRestController {
             Hopital hopital = asignHopitalCreate(hopitalRequest);
             Hopital saved = hopitalService.saveHopital(hopital);
             return ResponseEntity.ok(
-                new HopitalResponse("Save hopital successfully", saved)
+                new HopitalResponse("Lưu thông tin thành công", saved)
             );
         } else {
             return ResponseEntity.badRequest().body("Hopital is null");
@@ -59,9 +59,12 @@ public class HopitalRestController {
     public ResponseEntity<?> edit(@RequestBody HopitalRequest hopitalRequest) {
         if (hopitalRequest != null) {
             Hopital hopital = asignHopitalEdit(hopitalRequest);
+            if (hopital == null) {
+                return ResponseEntity.badRequest().body("Bệnh viện không tồn tại");
+            }
             Hopital saved = hopitalService.saveHopital(hopital);
             return ResponseEntity.ok(
-                new HopitalResponse("Edit hopital successfully", saved)
+                new HopitalResponse("Cập nhật thông tin thành công", saved)
             );
         } else {
             return ResponseEntity.badRequest().body("Hopital is null");

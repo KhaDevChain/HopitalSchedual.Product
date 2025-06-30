@@ -45,5 +45,10 @@ public class HopitalServiceImpl implements HopitalService {
     public void deleteById(String id) {
         hopitalRepository.deleteById(id);
     }
+
+    @Override
+    public List<Hopital> findByContractIsNotNullAndContractNot() {
+        return hopitalRepository.findByContractIsNotNullAndContractNot("");
+    }
     
 }
