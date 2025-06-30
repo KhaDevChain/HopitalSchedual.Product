@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,13 @@ public class HopitalRestController {
     public ResponseEntity<?> getAllHopitals() {
         return ResponseEntity.ok(
             new HopitalResponse("Successfully !", hopitalService.findAll())
+        );
+    }
+
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") String id) {
+        return ResponseEntity.ok(
+            new HopitalResponse("Successfully !", hopitalService.findById(id))
         );
     }
 
