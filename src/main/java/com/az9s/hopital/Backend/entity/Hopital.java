@@ -65,10 +65,10 @@ public class Hopital {
     @Column(name = "close_work", columnDefinition = "varchar(8)")
     private String closeWork;
 
-    @Column(name = "logo", nullable = false, columnDefinition = "varchar(50)")
+    @Column(name = "logo", nullable = false, columnDefinition = "varchar(100)")
     private String logo;
 
-    @Column(name = "contract", unique = false, columnDefinition = "varchar(50)")
+    @Column(name = "contract", unique = false, columnDefinition = "varchar(100)")
     private String contract;
 
     @Column(name = "represent_name", columnDefinition = "varchar(60)")
