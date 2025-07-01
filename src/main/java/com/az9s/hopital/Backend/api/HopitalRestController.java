@@ -110,6 +110,7 @@ public class HopitalRestController {
                 hopital.setCloseWork(hopitalRequest.getCloseWork());
                 hopital.setLogo(hopitalRequest.getLogo());
                 hopital.setContract(hopitalRequest.getContract());
+                hopital.setContractSize(hopitalRequest.getContractSize());
                 hopital.setRepresentName(hopitalRequest.getRepresentName());
                 hopital.setRepresentPhone(hopitalRequest.getRepresentPhone());
                 hopital.setRepresentJob(hopitalRequest.getRepresentJob());
@@ -139,7 +140,9 @@ public class HopitalRestController {
             hopital.setCloseWork(hopitalRequest.getCloseWork());
             hopital.setLogo(hopitalRequest.getLogo());
             hopital.setContract(hopitalRequest.getContract());
+            hopital.setContractSize(hopitalRequest.getContractSize());
             hopital.setRepresentName(hopitalRequest.getRepresentName());
+            hopital.setRepresentPhone(hopitalRequest.getRepresentPhone());
             hopital.setRepresentJob(hopitalRequest.getRepresentJob());
             hopital.setActivated(hopitalRequest.getActivatedEnum());
             hopital.setCreatedAt(LocalDateTime.now());

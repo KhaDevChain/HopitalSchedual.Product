@@ -71,6 +71,9 @@ public class Hopital {
     @Column(name = "contract", unique = false, columnDefinition = "varchar(100)")
     private String contract;
 
+    @Column(name = "contractSize")
+    private Integer contractSize;
+
     @Column(name = "represent_name", columnDefinition = "varchar(60)")
     private String representName;
 
