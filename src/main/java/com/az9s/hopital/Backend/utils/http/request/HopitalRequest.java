@@ -23,7 +23,7 @@ public class HopitalRequest {
     private String closeWork;
     private String logo;
     private String contract;
-    private int contractSize;
+    private Integer contractSize;
     private String representName;
     private String representPhone;
     private String representJob;
